@@ -8,6 +8,8 @@ let settings = {};
 function handleError(err, response, next) {
 	response.send(500, err);
 	next();
+
+	
 }
 
 function returnPlayer(id, response, next) {
