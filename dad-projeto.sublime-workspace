@@ -1,0 +1,1046 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"s",
+				"slice	method"
+			],
+			[
+				"p",
+				"push	method"
+			],
+			[
+				"bara",
+				"baralho	property"
+			],
+			[
+				"ba",
+				"baralho	property"
+			],
+			[
+				"in",
+				"index	let"
+			],
+			[
+				"ar",
+				"Array	interface"
+			],
+			[
+				"Tip",
+				"tipoCarta	let"
+			],
+			[
+				"Ti",
+				"TipoCarta	enum"
+			],
+			[
+				"R",
+				"Rainha	var"
+			],
+			[
+				"Se",
+				"Sete	var"
+			],
+			[
+				"Tipo",
+				"TipoCarta	class"
+			],
+			[
+				"cons",
+				"constructor	keyword"
+			],
+			[
+				"cha",
+				"chat"
+			],
+			[
+				"w",
+				"wsServer"
+			],
+			[
+				"g",
+				"getPlayersMessages	method"
+			],
+			[
+				"ap",
+				"apiBaseUri"
+			],
+			[
+				"r",
+				"request"
+			],
+			[
+				"re",
+				"response"
+			],
+			[
+				"co",
+				"collection"
+			],
+			[
+				"mon",
+				"mongoClient"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"ul",
+				"urlBase"
+			],
+			[
+				"fu",
+				"function"
+			],
+			[
+				"url",
+				"urlBase"
+			],
+			[
+				"O",
+				"Observable	alias"
+			],
+			[
+				"any",
+				"any	keyword"
+			],
+			[
+				"se",
+				"searchItem	parameter"
+			],
+			[
+				"pri",
+				"private	keyword"
+			],
+			[
+				"In",
+				"Injectable	alias"
+			],
+			[
+				"impo",
+				"import	keyword"
+			],
+			[
+				"con",
+				"constructor	keyword"
+			],
+			[
+				"pro",
+				"providers	property"
+			],
+			[
+				"exp",
+				"export	keyword"
+			],
+			[
+				"an",
+				"animateQuadrant"
+			],
+			[
+				"lin",
+				"line"
+			],
+			[
+				"ani",
+				"animateColumn"
+			],
+			[
+				"ha",
+				"hasClass"
+			],
+			[
+				"a",
+				"animateQuandrant"
+			],
+			[
+				"ec",
+				"each"
+			],
+			[
+				"boa",
+				"boardQuadrant"
+			],
+			[
+				"bo",
+				"boardLine"
+			],
+			[
+				"che",
+				"checkFieldCells"
+			],
+			[
+				"data",
+				"data-column"
+			],
+			[
+				"cehc",
+				"checkColumn"
+			],
+			[
+				"cel",
+				"cellsBoardLine"
+			],
+			[
+				"date",
+				"datepicker"
+			],
+			[
+				"boar",
+				"boardGame"
+			],
+			[
+				"bora",
+				"boardGame"
+			],
+			[
+				"time",
+				"timer"
+			],
+			[
+				"net",
+				"nextIndex"
+			],
+			[
+				"tim",
+				"timer"
+			],
+			[
+				"fol",
+				"folderName"
+			],
+			[
+				"ge",
+				"getElementById"
+			],
+			[
+				"perio",
+				"periodChange"
+			],
+			[
+				"peri",
+				"period"
+			],
+			[
+				"per",
+				"periodOutput"
+			],
+			[
+				"grade",
+				"gradein"
+			],
+			[
+				"name",
+				"nameOutput"
+			],
+			[
+				"n",
+				"nameOutput"
+			],
+			[
+				"hide",
+				"hideButton"
+			],
+			[
+				"show",
+				"showButton"
+			],
+			[
+				"bu",
+				"buttons"
+			],
+			[
+				"S",
+				"Schema"
+			],
+			[
+				"par",
+				"parent_id"
+			],
+			[
+				"uns",
+				"unsigned"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"ad",
+				"advertisements"
+			],
+			[
+				"to",
+				"total_evals"
+			],
+			[
+				"cancel",
+				"Canceled"
+			],
+			[
+				"mess",
+				"message_success"
+			],
+			[
+				"user",
+				"users"
+			],
+			[
+				"ord",
+				"orderBy"
+			],
+			[
+				"users",
+				"users"
+			],
+			[
+				"Re",
+				"Request"
+			],
+			[
+				"do",
+				"download"
+			],
+			[
+				"res",
+				"response"
+			],
+			[
+				"phot",
+				"profile_photo"
+			],
+			[
+				"code",
+				"confirmation_code"
+			],
+			[
+				"creat",
+				"create"
+			],
+			[
+				"array_p",
+				"array_push"
+			],
+			[
+				"tg",
+				"tagSync"
+			],
+			[
+				"new",
+				"newTag"
+			],
+			[
+				"crea",
+				"create"
+			],
+			[
+				"is_n",
+				"is_numeric"
+			],
+			[
+				"array_f",
+				"array_filter"
+			],
+			[
+				"inp",
+				"inputTags"
+			],
+			[
+				"ta",
+				"tagged"
+			],
+			[
+				"for",
+				"foreach	foreach …"
+			],
+			[
+				"id",
+				"id"
+			],
+			[
+				"op",
+				"option	Tag"
+			],
+			[
+				"com",
+				"compact"
+			],
+			[
+				"verifi",
+				"Verification"
+			],
+			[
+				"emai",
+				"emails"
+			],
+			[
+				"us",
+				"user"
+			],
+			[
+				"confir",
+				"confirmation_code"
+			],
+			[
+				"A",
+				"Authenticate"
+			],
+			[
+				"fon",
+				"font-size"
+			],
+			[
+				"med",
+				"media"
+			],
+			[
+				"media",
+				"media_url"
+			],
+			[
+				"e",
+				"elseif	elseif …"
+			],
+			[
+				"max",
+				"maxNbChars"
+			],
+			[
+				"use",
+				"users"
+			],
+			[
+				"be",
+				"belongsTo"
+			],
+			[
+				"has",
+				"hasMany"
+			],
+			[
+				"u",
+				"user_key"
+			],
+			[
+				"req",
+				"request"
+			],
+			[
+				"reque",
+				"request-get"
+			],
+			[
+				"RE",
+				"Request"
+			],
+			[
+				"stat",
+				"static"
+			],
+			[
+				"al",
+				"alt	Attr"
+			],
+			[
+				"i",
+				"i	Tag"
+			],
+			[
+				"boo",
+				"bottom"
+			],
+			[
+				"h",
+				"height	Attr"
+			],
+			[
+				"bor",
+				"border-color"
+			],
+			[
+				"Auth",
+				"AuthenticationController"
+			],
+			[
+				"chec",
+				"checkSession"
+			],
+			[
+				"pa",
+				"padding-right"
+			],
+			[
+				"bac",
+				"background-color"
+			],
+			[
+				"col",
+				"color"
+			],
+			[
+				"t",
+				"td	Tag"
+			],
+			[
+				"th",
+				"th	Tag"
+			],
+			[
+				"l",
+				"label	Tag"
+			],
+			[
+				"hea",
+				"header	Tag"
+			],
+			[
+				"session_r",
+				"session_regenerate_id"
+			],
+			[
+				"auth",
+				"authenticate"
+			],
+			[
+				"pu",
+				"public"
+			],
+			[
+				"isn",
+				"is_null"
+			],
+			[
+				"ti",
+				"title"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "node/game/baralho.ts",
+			"settings":
+			{
+				"buffer_size": 851,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "node/game/carta.ts",
+			"settings":
+			{
+				"buffer_size": 728,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "node/app.authentication.ts",
+			"settings":
+			{
+				"buffer_size": 764,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "node/game/maos.ts",
+			"settings":
+			{
+				"buffer_size": 699,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 269.0,
+		"last_filter": "Types",
+		"selected_items":
+		[
+			[
+				"Types",
+				"Set Syntax: TypeScript"
+			],
+			[
+				"ssxm",
+				"Set Syntax: XML"
+			],
+			[
+				"Insta",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 549.0
+	},
+	"console":
+	{
+		"height": 150.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'df21e130d211cfc94d9b0905775a7c0f' + '1e3d39e33b79698005270310898eea76'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) "
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/guilh/Desktop/Sueca",
+		"/C/Users/guilh/Desktop/Sueca/node/game"
+	],
+	"file_history":
+	[
+		"/C/Users/guilh/Desktop/Sueca/node/game/naipe.ts",
+		"/C/Users/guilh/Desktop/Sueca/node/game/tipoCarta.ts",
+		"/C/Users/guilh/Desktop/Sueca/node/app.database.ts",
+		"/C/Users/guilh/Desktop/Sueca/node/app.games.ts",
+		"/C/Users/guilh/Desktop/Sueca/node/app.security.ts",
+		"/C/Users/guilh/Desktop/Sueca/node/game/carta.ts",
+		"/C/Users/guilh/Desktop/Sueca/node/handler.settings.ts",
+		"/C/Users/guilh/Desktop/Sueca/node/game/baralho.ts",
+		"/C/Users/guilh/Desktop/Sueca/node/app.players.ts",
+		"/C/Users/guilh/Desktop/Sueca/node/game/mao.ts",
+		"/C/Users/guilh/Desktop/Sueca/node/app.authentication.ts",
+		"/C/Users/guilh/Desktop/Sueca/node/app.websockets.ts",
+		"/C/Users/guilh/Desktop/Sueca/node/package.json",
+		"/C/Users/guilh/Desktop/Sueca/node/tsconfig.json",
+		"/C/Users/guilh/Desktop/qos.txt",
+		"/C/Users/guilh/Desktop/Configs/R-Site2_startup-config.cfg",
+		"/C/Users/guilh/AppData/Local/Temp/R3_startup-config.cfg.txt",
+		"/C/Users/guilh/AppData/Local/Temp/R2_startup-config.cfg.txt",
+		"/C/Users/guilh/Desktop/exemplo/index.js",
+		"/C/Users/guilh/Desktop/exemplo/angular/app/app.component.spec.ts",
+		"/C/Users/guilh/Downloads/Vikings.S04E16.WEB-DL.XviD-FUM[ettv]/Torrent-Downloaded-from-ExtraTorrent.cc.txt",
+		"/C/Users/guilh/Source/Repos/is-project/SmartH2O_Service/App_Data/alarm-data.xml",
+		"/C/Users/guilh/Desktop/TAR/README.txt",
+		"/C/Users/guilh/Source/Repos/is-project/SmartH2O_Service/App_Data/param-data.xml",
+		"/C/Users/guilh/Source/Repos/DAD_Project/dad_projeto/angular/app/app.component.ts",
+		"/C/Users/guilh/Source/Repos/DAD_Project/dad_projeto/dad_project.sublime-project",
+		"/C/Users/guilh/Source/Repos/DAD_Project/dad_projeto/angular/angular.sublime-project",
+		"/C/Users/guilh/Source/Repos/is-project/SmartH2O_Service/App_Dataparam-data.xml",
+		"/C/Users/guilh/AppData/Local/Temp/alarm-data.xml",
+		"/C/Users/guilh/Source/Repos/is-project/SmartH2O_Alarm/bin/Debug/trigger-rules.xml",
+		"/C/Users/guilh/Source/Repos/is-project/SmartH2O_DLog/bin/Debug/param-data.xml",
+		"/C/Users/guilh/Desktop/alarm.xml",
+		"/C/Users/guilh/Source/Repos/is-project/SmartH2O_DLog/bin/Debug/alarm-data.xml",
+		"/C/Users/guilh/Desktop/alarm",
+		"/C/Users/guilh/Desktop/websocket-app/angular/protractor.config.js",
+		"/C/Users/guilh/Desktop/websocket-app/app.websockets.js",
+		"/C/Users/guilh/Desktop/websocket-app/angular/app/notifications/websocket.service.ts",
+		"/C/Users/guilh/Desktop/websocket-app/angular/app/chat.component.ts",
+		"/C/Users/guilh/Desktop/websocket-app/app.players.js",
+		"/C/Users/guilh/Desktop/websocket-app/app.js",
+		"/C/Users/guilh/Desktop/websocket-app/angular/app/notifications/notification.component.ts",
+		"/C/Users/guilh/Desktop/websocket-app/angular/app/app.component.html",
+		"/C/Users/guilh/Desktop/websocket-app/angular/app/auth.service.ts",
+		"/C/Users/guilh/Desktop/websocket-app/angular/app/app.component.ts",
+		"/C/Users/guilh/Desktop/websocket-app/exclude.sublime-project",
+		"/C/Users/guilh/Desktop/websocket-app/angular/app/exclude.sublime-project",
+		"/C/Users/guilh/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/C/Users/guilh/Documents/IPL/Desenvolvimento de Aplicacoes Distribuidas/Fichas Praticas/mongo/exercicio2/mongo2.games.js",
+		"/C/Users/guilh/Documents/IPL/Desenvolvimento de Aplicacoes Distribuidas/Fichas Praticas/mongo/exercicio1/index.js",
+		"/C/Users/guilh/Documents/IPL/Desenvolvimento de Aplicacoes Distribuidas/Fichas Praticas/mongo/exercicio1/mongo1.js",
+		"/C/Users/guilh/Documents/IPL/Desenvolvimento de Aplicacoes Distribuidas/Fichas Praticas/mongo/mongo1.js",
+		"/C/Users/guilh/Documents/IPL/Desenvolvimento de Aplicacoes Distribuidas/Fichas Praticas/mongo/index.js",
+		"/C/Users/guilh/Downloads/mongo1.js",
+		"/C/Users/guilh/Desktop/angular-tour-of-heroes/config.sublime-project",
+		"/C/Users/guilh/AppData/Local/Temp/R16_startup-config.cfg.txt",
+		"/C/Users/guilh/AppData/Local/Temp/R5_startup-config.cfg.txt",
+		"/C/Users/guilh/AppData/Local/Temp/R15_startup-config.cfg.txt",
+		"/C/Users/guilh/AppData/Local/Temp/R1_startup-config.cfg.txt",
+		"/C/Users/guilh/Documents/IPL/Desenvolvimento de Aplicacoes Distribuidas/Fichas Praticas/ficha4_3/angular/app/leaderboard/leaderboard.component.js",
+		"/C/Users/guilh/Documents/IPL/Desenvolvimento de Aplicacoes Distribuidas/Fichas Praticas/ficha4_3/index.js",
+		"/C/Users/guilh/Documents/IPL/Desenvolvimento de Aplicacoes Distribuidas/Fichas Praticas/ficha4_3/angular/app/leaderboard/leaderboard.service.ts",
+		"/C/Users/guilh/Documents/IPL/Desenvolvimento de Aplicacoes Distribuidas/Fichas Praticas/ficha4_3/angular/app/leaderboard/leaderboard.module.ts",
+		"/C/Users/guilh/Documents/IPL/Desenvolvimento de Aplicacoes Distribuidas/Fichas Praticas/ficha4_3/angular/app/leaderboard/leaderboard.component.ts",
+		"/C/Users/guilh/AppData/Local/Temp/R9_startup-config.cfg.txt",
+		"/C/Users/guilh/AppData/Local/Temp/R11_startup-config.cfg.txt",
+		"/C/Users/guilh/Documents/IPL/Desenvolvimento de Aplicacoes Distribuidas/Fichas Praticas/ficha3/ficha3.sublime-project",
+		"/C/Users/guilh/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/C/Users/guilh/Desktop/angular-quickstart/styles.css",
+		"/C/Users/guilh/Documents/IPL/Desenvolvimento de Aplicacoes Distribuidas/Projeto/info.txt.txt",
+		"/C/Users/guilh/Desktop/angular-tour-of-heroes/index.html",
+		"/C/Users/guilh/Desktop/angular-tour-of-heroes/app/app.component.ts",
+		"/C/Users/guilh/Desktop/angular-tour-of-heroes/app/app.module.ts",
+		"/C/Users/guilh/Desktop/angular-quickstart/systemjs.config.js",
+		"/C/Users/guilh/Documents/IPL/Desenvolvimento de Aplicacoes Distribuidas/Projeto/game/js/main.js",
+		"/C/Users/guilh/Documents/IPL/Programação Avançada/PA.turno_D5_etapa2_2015-16.2141254/paCodec2/encode.c",
+		"/C/Users/guilh/Documents/IPL/Desenvolvimento de Aplicações Distribuidas/Fichas Praticas/ficha1/js/synchronize.js",
+		"/C/Users/guilh/Documents/IPL/Desenvolvimento de Aplicações Distribuidas/Fichas Praticas/ficha1/js/slideshow.js",
+		"/C/Users/guilh/Documents/IPL/Desenvolvimento de Aplicações Distribuidas/Fichas Praticas/ficha1/index.html",
+		"/C/Users/guilh/Documents/IPL/Desenvolvimento de Aplicações Distribuidas/Fichas Praticas/ficha1/js/alertbox.js",
+		"/C/Users/guilh/Documents/IPL/Desenvolvimento de Aplicações Distribuidas/Fichas Praticas/exercicio1",
+		"/C/Users/guilh/Desktop/Malwarebytes Anti-Malware Premium 2.2.1.1043 + License Key [SadeemPC]/Instructions !!!.txt",
+		"/D/Malwarebytes Anti-Malware Premium 2.0.2.1012 Final + Keys [ATOM]/KEYS.txt",
+		"/C/Users/guilh/AppData/Local/Temp/Rar$DIa0.722/Info.txt",
+		"/C/Users/guilh/Desktop/laravel/app/Http/Controllers/AdvertisementsController.php",
+		"/C/Users/guilh/AInet/exame/.env",
+		"/C/Users/guilh/.homestead/Homestead.yaml",
+		"/C/Users/guilh/Documents/IPL/Engenharia de Sistemas e Serviços/Trabalho Pratico/Prototipo/plantaformaArduino/fireDetector.php",
+		"/C/Users/guilh/Documents/IPL/Engenharia de Sistemas e Serviços/Trabalho Pratico/Prototipo/plantaformaArduino/luminosityDetector.php",
+		"/C/Users/guilh/Documents/IPL/Engenharia de Sistemas e Serviços/Trabalho Pratico/Prototipo/plantaformaArduino/lol.php",
+		"/C/Users/guilh/Documents/IPL/Engenharia de Sistemas e Serviços/Trabalho Pratico/Prototipo/plantaformaArduino/motionDetector.php",
+		"/C/Users/guilh/Documents/IPL/Engenharia de Sistemas e Serviços/Trabalho Pratico/Prototipo/plantaformaArduino/index.php",
+		"/C/Users/guilh/Documents/vodafone.txt",
+		"/C/Users/guilh/AppData/Local/Temp/Rar$EXa0.718/startbootstrap-sb-admin-2-1.0.8/index.html",
+		"/C/Users/guilh/Desktop/Nova pasta/pages/grid.html",
+		"/C/Users/guilh/AppData/Local/Temp/Rar$EXa0.112/startbootstrap-sb-admin-2-1.0.8/pages/index.html",
+		"/C/Users/guilh/Desktop/Nova pasta/pages/flot.html",
+		"/C/Users/guilh/Documents/IPL/Engenharia de Sistemas e Serviços/Trabalho Pratico/Prototipo/plantaformaArduino/lab08_service_dados.php",
+		"/C/Users/guilh/Desktop/startbootstrap-sb-admin-1.0.4/charts.html",
+		"/C/Users/guilh/Desktop/startbootstrap-sb-admin-1.0.4/js/plugins/flot/excanvas.min.js",
+		"/C/Users/guilh/Documents/IPL/Engenharia de Sistemas e Serviços/Trabalho Pratico/Prototipo/plantaformaArduino/lab08_arduino_valores.php",
+		"/C/Users/guilh/Documents/IPL/Engenharia de Sistemas e Serviços/Trabalho Pratico/Prototipo/plantaformaArduino/lab08_arduino_historico.php",
+		"/C/Users/guilh/Documents/IPL/Engenharia de Sistemas e Serviços/Trabalho Pratico/Prototipo/plantaformaArduino/das.php",
+		"/C/Users/guilh/Documents/IPL/Engenharia de Sistemas e Serviços/Trabalho Pratico/Prototipo/plantaformaArduino/bitch.php",
+		"/C/Users/guilh/Documents/IPL/Engenharia de Sistemas e Serviços/Trabalho Pratico/Prototipo/plantaformaArduino/css/style.css",
+		"/C/Users/guilh/Documents/IPL/Engenharia de Sistemas e Serviços/Trabalho Pratico/Prototipo/plantaformaArduino/lab08_service_dados_json.php",
+		"/C/Users/guilh/Documents/IPL/Engenharia de Sistemas e Serviços/Trabalho Pratico/Prototipo/plantaformaArduino/highTemperature.php",
+		"/C/Users/guilh/AInet/urbanMarket/resources/views/auth/emails/password.blade.php",
+		"/C/Users/guilh/AInet/urbanMarket/resources/views/ads/partials/tags.blade.php",
+		"/C/Users/guilh/AInet/urbanMarket/.env",
+		"/C/Users/guilh/AInet/urbanMarket/app/Http/Kernel.php",
+		"/C/Users/guilh/AInet/urbanMarket/app/Http/Middleware/EncryptCookies.php",
+		"/C/Users/guilh/AInet/urbanMarket/app/Http/Controllers/PageController.php",
+		"/C/Users/guilh/AInet/urbanMarket/resources/views/ads/edit.blade.php",
+		"/C/Users/guilh/AInet/urbanMarket/resources/views/ads/detail.blade.php",
+		"/C/Users/guilh/AInet/urbanMarket/resources/views/bids/edit.blade.php",
+		"/C/Users/guilh/AInet/urbanMarket/resources/views/bids/counter.blade.php",
+		"/C/Users/guilh/AInet/urbanMarket/resources/views/bids/partials/seller-eval.blade.php",
+		"/C/Users/guilh/AInet/urbanMarket/resources/views/bids/partials/buyer-eval.blade.php",
+		"/C/Users/guilh/AInet/urbanMarket/resources/views/bids/partials/bids.blade.php",
+		"/C/Users/guilh/AInet/urbanMarket/resources/views/ads/add.blade.php",
+		"/C/Users/guilh/AInet/urbanMarket/resources/views/ads/partials/comment-display.blade.php",
+		"/C/Users/guilh/AInet/urbanMarket/resources/views/ads/partials/comment-add.blade.php",
+		"/C/Users/guilh/AInet/urbanMarket/resources/views/ads/partials/bid.blade.php",
+		"/C/Users/guilh/AInet/urbanMarket/app/User.php",
+		"/C/Users/guilh/AInet/urbanMarket/app/Tag.php",
+		"/C/Users/guilh/AInet/urbanMarket/app/Media.php",
+		"/C/Users/guilh/AInet/urbanMarket/app/Comment.php",
+		"/C/Users/guilh/AInet/urbanMarket/app/Bid.php"
+	],
+	"find":
+	{
+		"height": 27.0
+	},
+	"find_in_files":
+	{
+		"height": 117.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"{",
+			"atabase.db.collection('players').find({}).toArray(function(err,players){\n		if(err){\n			console.log(err);\n			next();\n		}\n		response.json(players);\n		next();\n	});\n",
+			"file_exclude_patterns",
+			"function",
+			"animateCells",
+			"checkColumn",
+			"+'])');\n",
+			"dir",
+			");\n",
+			"stopButton",
+			"previousButton",
+			"sli",
+			"create",
+			"}\n",
+			"endforeach",
+			".form-control-feedback",
+			"details",
+			"searchByLocation",
+			"user",
+			"profile",
+			" }}</",
+			";\n",
+			"[];\n",
+			"ws6_ainet",
+			"btn-default",
+			"fa",
+			"footer",
+			"glyphicon",
+			"thumbnail",
+			"navbar-tex",
+			"navbar",
+			"span",
+			"thumb",
+			"navbar",
+			"navbar\n",
+			"nvbar\n",
+			"16e1a17a0fc83b0f49f2389a395287d5",
+			";\n",
+			"navbar",
+			"jumbotron",
+			".jumbo",
+			"jumbotron",
+			"jum",
+			"jumbo",
+			"jum",
+			"body",
+			"1",
+			"jum",
+			"          ",
+			"is_selected"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "node/game/baralho.ts",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 851,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								822,
+								822
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/TypeScript/TypeScript.tmLanguage",
+							"typescript_plugin_format_options":
+							{
+								"convertTabsToSpaces": false,
+								"indentSize": 4,
+								"tabSize": 4
+							},
+							"use_tab_stops": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 51.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "node/game/carta.ts",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 728,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								240,
+								240
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/TypeScript/TypeScript.tmLanguage",
+							"translate_tabs_to_spaces": false,
+							"use_tab_stops": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "node/app.authentication.ts",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 764,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								764,
+								764
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/TypeScript/TypeScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"typescript_plugin_format_options":
+							{
+								"convertTabsToSpaces": true,
+								"indentSize": 4,
+								"tabSize": 4
+							},
+							"use_tab_stops": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "node/game/maos.ts",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 699,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								427,
+								427
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/TypeScript/TypeScript.tmLanguage",
+							"typescript_plugin_format_options":
+							{
+								"convertTabsToSpaces": false,
+								"indentSize": 4,
+								"tabSize": 4
+							},
+							"use_tab_stops": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 38.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.doc":
+	{
+		"height": 142.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "dad-projeto.sublime-project",
+	"replace":
+	{
+		"height": 50.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 290.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
