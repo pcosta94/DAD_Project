@@ -9,5 +9,6 @@ import { Maos } from './maos';
 })
 
 export class GameComponent implements OnInit {
+
 	
 }
