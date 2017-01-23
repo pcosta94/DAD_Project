@@ -32,7 +32,8 @@ export class Game {
                 {
                     $or:[
                         {creatorUsername: request.params.term },
-                        {winner: request.params.term },
+                        {winner1: request.params.term },
+                        {winner2: request.params.term },
                         {gameStart: request.params.term },
                         {gameEnd: request.params.term },
                         {state: request.params.term }
@@ -49,7 +50,7 @@ export class Game {
 
     public getMyGames = (request: any, response: any, next: any) => {
         const user_id = request.params.id;
-   
+
         database.db.collection('games')
             .find({creatorId:user_id, state:'pending'})
             .toArray()
@@ -63,7 +64,7 @@ export class Game {
     public joinGame = (request: any, response: any, next: any) => {
         const id = new mongodb.ObjectID(request.params.id);
         const newP = request.body;
-        
+
         if (id === undefined) {
             response.send(400, 'No game data');
             return next();
@@ -221,7 +222,7 @@ export class Game {
             .catch(err => this.handleError(err, response, next));
     }
 
-   
+
     // Routes for the games
     public init = (server: any, settings: HandlerSettings) => {
         server.get(settings.prefix + 'games', this.getGames);
@@ -236,5 +237,5 @@ export class Game {
         server.post(settings.prefix + 'games', settings.security.authorize, this.createGame);
         server.del(settings.prefix + 'games/:id', settings.security.authorize, this.deleteGame);
         console.log("Games routes registered");
-    };    
+    };
 }
