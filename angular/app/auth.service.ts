@@ -42,7 +42,7 @@ export class AuthService {
             .map(res => {
                 res.json();
                 this.currentUser = null;
-                localStorage.clear();
+                sessionStorage.clear();
                 return this.currentUser;
             })
             .catch(e => {

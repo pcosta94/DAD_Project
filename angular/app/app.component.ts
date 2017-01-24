@@ -12,10 +12,10 @@ import { User } from './user';
 export class AppComponent {
     constructor(private auth: AuthService)
     {
-      if(localStorage != null){
+      if(sessionStorage != null){
         console.log('Tenho merdas na local');
-        console.log(localStorage.getItem('player'));
-        auth.currentUser = JSON.parse(localStorage.getItem('player'));
+        console.log(sessionStorage.getItem('player'));
+        auth.currentUser = JSON.parse(sessionStorage.getItem('player'));
       }
 
 

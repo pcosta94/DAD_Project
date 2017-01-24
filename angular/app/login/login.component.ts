@@ -25,7 +25,7 @@ export class LogInComponent {
             if (loggedInUser) {
                 this.loginFailed = false;
                 console.log(loggedInUser);
-                localStorage.setItem('player', JSON.stringify(loggedInUser));
+                sessionStorage.setItem('player', JSON.stringify(loggedInUser));
                 this.gameService.sendLoginMessage(loggedInUser);
                 this.router.navigateByUrl('/');
             } else {
