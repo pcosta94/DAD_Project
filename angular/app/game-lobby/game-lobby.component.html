@@ -1,0 +1,37 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<h2>Pending Games List</h2>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Creator Username</th>
+						<th>Teammate</th>
+						<th>Adversaries</th>
+						<th>Joined Players</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let game of pendingGames; let i = index">
+						<td>{{i+1}}</td>
+						<td>{{game.creatorUsername}}</td>
+						<td>{{game.players.length}}/4</td>
+						<td></td>
+						<td></td>
+						<td>
+							<button class="btn btn-success btn-block" type="button" *ngIf="game.creatorId != authService.currentUser._id">Join Game</button>
+							<button class="btn btn-danger btn-block" *ngIf="game.creatorId == authService.currentUser._id" (click)="deletePendingGame(game._id)">Delete Game</button>
+						</td>
+					</tr>
+					<tr>
+						<button class="btn btn-primary btn-block" type="button" (click)="createNewGame()">Create New Game</button>
+					</tr>
+				</tbody>
+			</table>
+			<notification-panel></notification-panel>
+			<lobby-chat></lobby-chat>
+		</div>
+	</div>
+</div>

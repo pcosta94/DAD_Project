@@ -28,53 +28,12 @@ export class Game {
 
     public getGames = (request: any, response: any, next: any) => {
         database.db.collection('games')
-            .find(
-                {
-                    $or:[
-                        {creatorUsername: request.params.term },
-                        {winner: request.params.term },
-                        {gameStart: request.params.term },
-                        {gameEnd: request.params.term },
-                        {state: request.params.term }
-                    ]
-                 }
-            )
+            .find()
             .toArray()
             .then(games => {
                 response.json(games || []);
                 next();
             })
-            .catch(err => this.handleError(err, response, next));
-    }
-
-    public getMyGames = (request: any, response: any, next: any) => {
-        const user_id = request.params.id;
-   
-        database.db.collection('games')
-            .find({creatorId:user_id, state:'pending'})
-            .toArray()
-            .then(games => {
-                response.json(games || []);
-                next();
-            })
-            .catch(err => this.handleError(err, response, next));
-    }
-
-    public joinGame = (request: any, response: any, next: any) => {
-        const id = new mongodb.ObjectID(request.params.id);
-        const newP = request.body;
-        
-        if (id === undefined) {
-            response.send(400, 'No game data');
-            return next();
-        }
-        database.db.collection('games')
-            .updateOne({
-                _id: id
-            }, {
-                $push: {players : newP}
-            })
-            .then(result => this.returnGame(id, response, next))
             .catch(err => this.handleError(err, response, next));
     }
 
@@ -97,94 +56,6 @@ export class Game {
                 _id: id
             }, {
                 $set: game
-            })
-            .then(result => this.returnGame(id, response, next))
-            .catch(err => this.handleError(err, response, next));
-    }
-
-    public updateGameState =  (request: any, response: any, next: any) => {
-        const id = new mongodb.ObjectID(request.params.id);
-        let time = new Date();
-        let dformat = [time.getMonth()+1,
-               time.getDate(),
-               time.getFullYear()].join('/')+' '+
-              [time.getHours(),
-               time.getMinutes(),
-               time.getSeconds()].join(':');
-        if (id === undefined) {
-            response.send(400, 'No game data');
-            return next();
-        }
-        database.db.collection('games')
-            .updateOne({
-                _id: id
-            }, {
-                $set: {state : 'playing' , gameStart : dformat}
-            })
-            .then(result => this.returnGame(id, response, next))
-            .catch(err => this.handleError(err, response, next));
-    }
-
-    public updateScoreOnGame =  (request: any, response: any, next: any) => {
-        const gameId = new mongodb.ObjectID(request.params.gameId);
-        const userId = request.params.userId;
-
-        if (gameId === undefined) {
-            response.send(400, 'No game data');
-            return next();
-        }
-        database.db.collection('games')
-            .updateOne({
-                _id: gameId, "players.player": userId
-            }, { $set: {
-                    "players.$.score": request.body.score
-                }
-            })
-            .then(result => this.returnGame(gameId, response, next))
-            .catch(err => this.handleError(err, response, next));
-    }
-
-    public updateVictoryOnGame =  (request: any, response: any, next: any) => {
-        const gameId = new mongodb.ObjectID(request.params.gameId);
-        const userId = request.params.userId;
-        let time = new Date();
-        let dformat = [time.getMonth()+1,
-               time.getDate(),
-               time.getFullYear()].join('/')+' '+
-              [time.getHours(),
-               time.getMinutes(),
-               time.getSeconds()].join(':');
-
-        if (gameId === undefined) {
-            response.send(400, 'No game data');
-            return next();
-        }
-        database.db.collection('games')
-            .updateOne({
-                _id: gameId, "players.player": userId
-            }, { $set: {
-                    state: 'ended',
-                    winner: request.body.username,
-                    gameEnd: dformat,
-                    "players.$.score": request.body.score
-                }
-            })
-            .then(result => this.returnGame(gameId, response, next))
-            .catch(err => this.handleError(err, response, next));
-    }
-
-    public cancelGame =  (request: any, response: any, next: any) => {
-        const id = new mongodb.ObjectID(request.params.id);
-
-        if (id === undefined) {
-            response.send(400, 'No game data');
-            return next();
-        }
-        database.db.collection('games')
-            .updateOne({
-                _id: id
-            }, {
-                $set: {state: 'canceled'}
             })
             .then(result => this.returnGame(id, response, next))
             .catch(err => this.handleError(err, response, next));
@@ -221,20 +92,32 @@ export class Game {
             .catch(err => this.handleError(err, response, next));
     }
 
-   
+    public joinPendingGame = (request: any, response: any, next: any) => {
+        const id = new mongodb.ObjectID(request.params.id);
+        const newPlayer = request.body;
+        
+        if (id === undefined) {
+            response.send(400, 'No game data');
+            return next();
+        }
+        database.db.collection('games')
+            .updateOne({
+                _id: id
+            }, {
+                $push: {players : newPlayer}
+            })
+            .then(result => this.returnGame(id, response, next))
+            .catch(err => this.handleError(err, response, next));
+    }
+
     // Routes for the games
     public init = (server: any, settings: HandlerSettings) => {
-        server.get(settings.prefix + 'games', this.getGames);
+        server.get(settings.prefix + 'games', settings.security.authorize, this.getGames);
         server.get(settings.prefix + 'games/:id', settings.security.authorize, this.getGame);
-        server.get(settings.prefix + 'mygames/:id',settings.security.authorize, this.getMyGames);
-        server.put(settings.prefix + 'joingame/:id',settings.security.authorize, this.joinGame);
-        server.put(settings.prefix + 'gamestate/:id', settings.security.authorize, this.updateGameState);
-        server.put(settings.prefix + 'games/:gameId/updatescore/:userId',settings.security.authorize, this.updateScoreOnGame);
-        server.put(settings.prefix + 'games/:gameId/updatevictory/:userId',settings.security.authorize, this.updateVictoryOnGame);
         server.put(settings.prefix + 'games/:id', settings.security.authorize, this.updateGame);
-        server.put(settings.prefix + 'games/:id/cancel', settings.security.authorize, this.cancelGame);
         server.post(settings.prefix + 'games', settings.security.authorize, this.createGame);
         server.del(settings.prefix + 'games/:id', settings.security.authorize, this.deleteGame);
+        server.put(settings.prefix + 'join-game/:id', settings.security.authorize, this.deleteGame)
         console.log("Games routes registered");
     };    
 }

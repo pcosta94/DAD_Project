@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h1>Welcome to Sueca</h1>
+      <p>
+      Sueca (meaning Swedish (female) in Portuguese) is a 4 player-partnership point trick-taking card game,
+       and a popular variant of the Bisca card game. The game is played in Portugal, Brazil and Angola and other 
+       Portuguese communities. Its closest relative is the very similar German game Einwerfen.
+      </p>
+      <div *ngIf="auth.isLoggedIn()">
+        <notification-panel></notification-panel>
+        <chat></chat>
+      </div>
+      
+      <!-- <top10-control> </top10-control> -->
+    </div>
+    <footer class="footer">
+        <div class="container">
+                            
+        </div>
+    </footer>
+  </div>
+</div>

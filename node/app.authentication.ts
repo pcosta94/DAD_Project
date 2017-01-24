@@ -20,4 +20,3 @@ export class Authentication{
         console.log("Authentication routes registered");
     }  
 } 
-

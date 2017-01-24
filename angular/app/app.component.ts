@@ -1,4 +1,5 @@
-import { Component } from '@angular/core'; 
+import { Component } from '@angular/core';
+import {AuthService } from './auth.service'
 
 @Component({
   	moduleId: module.id,
@@ -6,6 +7,16 @@ import { Component } from '@angular/core';
 	templateUrl: 'app.component.html',
 })
 export class AppComponent  { 
-	
+	constructor(private auth: AuthService)
+    {
+    	if(sessionStorage != null){
+	        console.log('Tenho merdas na local');
+	        console.log(sessionStorage.getItem('player'));
+        	auth.currentUser = JSON.parse(sessionStorage.getItem('player'));
+	    }
+    }
 
+    logout(): void {
+        this.auth.logout().subscribe(r => console.log(r));
+ 	}
 }

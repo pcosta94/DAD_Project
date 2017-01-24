@@ -1,0 +1,121 @@
+  <div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Create a New User</h3>
+        </div>
+        <div class="panel-body">
+          <div class="col-lg-12">
+            <form (ngSubmit)="onSubmit()" #newUserForm="ngForm" class="form-horizontal">
+            <div class="form-group">
+              <label for="username" class="col-sm-5 col-md-4 control-label"><small class="text-muted">*</small> Username</label>
+              <div class="col-sm-6 col-md-4">
+                <input type="text" type="text" class="form-control" id="username" placeholder="Username"
+                pattern="^[a-zA-Z0-9]*$"
+                minlength="3"
+                maxlength="24"
+                required
+                [(ngModel)]="model.username" name="username"
+                #username="ngModel">
+                <div *ngIf="username.errors  && (username.dirty || username.touched)" class="alert alert-danger">
+                  <div [hidden]="!username.errors.required">
+                    Username é obrigatório
+                  </div>
+                  <div [hidden]="!username.errors.minlength">
+                    Username at least 3 characters!
+                  </div>
+                  <div [hidden]="!username.errors.maxlength">
+                    Username cannot be over 24 characters!
+                  </div>
+                  <div [hidden]="!username.errors.pattern">
+                    Username cannot contain numbers, small and big letters!
+                  </div>
+                </div>
+                <div *ngIf="usernameTaken" class="alert alert-danger" [hidden]="!usernameTaken">
+                    Username is already being used!
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email" class="col-sm-5 col-md-4 control-label"><small class="text-muted">*</small> Email</label>
+              <div class="col-sm-6 col-md-4">
+                <input type="email" class="form-control" id="email" placeholder="abde@example.com"
+                pattern="{{mailpattern}}"
+                required
+                [(ngModel)]="model.email" name="email"
+                #email="ngModel" >
+                <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger">
+                  <div [hidden]="!email.errors.required">
+                    Email is required!
+                  </div>
+                  <div [hidden]="!email.errors.pattern">
+                    Available email!
+                  </div>
+                </div>
+                <div *ngIf="emailTaken" class="alert alert-danger" [hidden]="!emailTaken">
+                  Email is already being used!
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="password" class="col-sm-5 col-md-4 control-label"><small class="text-muted">*</small> Password</label>
+              <div class="col-sm-6 col-md-4">
+                <input type="password" class="form-control" id="password" placeholder="Password"
+                minlength="3"
+                maxlength="48"
+                required
+                [(ngModel)]="model.password" name="password"
+                validateEqual="cpassword" reverse="true"
+                #password="ngModel">
+                <div *ngIf="password.errors && (password.dirty || password.touched)" class="alert alert-danger">
+                  <div [hidden]="!password.errors.required">
+                    Password is required
+                  </div>
+                  <div [hidden]="!password.errors.minlength">
+                    Password must be at least 3 charaters!
+                  </div>
+                  <div [hidden]="!password.errors.maxlength">
+                    Password cannot be over 48 caracteres!
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="cpassword" class="col-sm-5 col-md-4 control-label"><small class="text-muted">*</small>Password Confirmation</label>
+              <div class="col-sm-6 col-md-4">
+                <input type="password" class="form-control" id="cpassword" placeholder="Password"
+                minlength="3"
+                maxlength="48"
+                required
+                [(ngModel)]="model.cpassword" name="cpassword"
+                validateEqual="password" reverse="false"
+                #cpassword="ngModel">
+                <div *ngIf="cpassword.errors && (cpassword.dirty || cpassword.touched)" class="alert alert-danger">
+                  <div [hidden]="!cpassword.errors.required">
+                    Password Confirmation is required
+                  </div>
+                  <div [hidden]="!cpassword.errors.minlength">
+                    Passowrd Confirmation has to be at least 3 characters!
+                  </div>
+                  <div [hidden]="!cpassword.errors.maxlength">
+                    Password Confirmation cannot be over 48 characters!
+                  </div>
+                  <div [hidden]="cpassword.errors.validateEqual">
+                    Password and Passaword Confirmation don't match!
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-xs-6 col-xs-offset-6 col-sm-3 col-sm-offset-5 col-md-2 col-md-offset-4">
+                <button type="submit" class="btn btn-default" [disabled]="!newUserForm.form.valid">Register</button>
+              </div>
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
