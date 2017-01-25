@@ -100,6 +100,33 @@ var Player = (function () {
             })
                 .catch(function (err) { return _this.handleError(err, response, next); });
         };
+        this.registerPlayer = function (request, response, next) {
+            app_database_1.databaseConnection.db.collection('players')
+                .findOne({ username: request.body.username })
+                .then(function (player) {
+                if (player !== null) {
+                    response.json({
+                        msg: util.format('Username already exists')
+                    });
+                }
+                else {
+                    app_database_1.databaseConnection.db.collection('players')
+                        .findOne({ email: request.body.email })
+                        .then(function (player) {
+                        if (player !== null) {
+                            response.json({
+                                msg: util.format('Email already in use')
+                            });
+                        }
+                        else {
+                            _this.createPlayer(request, response, next);
+                        }
+                    })
+                        .catch(function (err) { return _this.handleError(err, response, next); });
+                }
+            })
+                .catch(function (err) { return _this.handleError(err, response, next); });
+        };
         // Routes for the games
         this.init = function (server, settings) {
             _this.settings = settings;
@@ -109,6 +136,7 @@ var Player = (function () {
             server.put(settings.prefix + 'players/:id', settings.security.authorize, _this.updatePlayer);
             server.post(settings.prefix + 'register', settings.security.authorize, _this.createPlayer);
             server.del(settings.prefix + 'players/:id', settings.security.authorize, _this.deletePlayer);
+            server.post(settings.prefix + 'register', _this.registerPlayer);
             console.log("Players routes registered");
         };
     }

@@ -95,17 +95,38 @@ export class Game {
     public joinPendingGame = (request: any, response: any, next: any) => {
         const id = new mongodb.ObjectID(request.params.id);
         const newPlayer = request.body;
-        
+  
         if (id === undefined) {
             response.send(400, 'No game data');
             return next();
         }
         database.db.collection('games')
-            .updateOne({
-                _id: id
-            }, {
-                $push: {players : newPlayer}
-            })
+            .updateOne(
+            { _id: id },
+            { $push: { players: newPlayer } }
+            )
+            .then(result => this.returnGame(id, response, next))
+            .catch(err => this.handleError(err, response, next));
+    }
+
+    public startPendingGame =  (request: any, response: any, next: any) => {
+        const id = new mongodb.ObjectID(request.params.id);
+        let time = new Date();
+        let dformat = [time.getMonth()+1,
+               time.getDate(),
+               time.getFullYear()].join('/')+' '+
+              [time.getHours(),
+               time.getMinutes(),
+               time.getSeconds()].join(':');
+        if (id === undefined) {
+            response.send(400, 'No game data');
+            return next();
+        }
+        database.db.collection('games')
+            .updateOne(
+                { _id: id }, 
+                { $set: {state : 'playing' , gameStart : dformat} }
+            )
             .then(result => this.returnGame(id, response, next))
             .catch(err => this.handleError(err, response, next));
     }
@@ -117,7 +138,8 @@ export class Game {
         server.put(settings.prefix + 'games/:id', settings.security.authorize, this.updateGame);
         server.post(settings.prefix + 'games', settings.security.authorize, this.createGame);
         server.del(settings.prefix + 'games/:id', settings.security.authorize, this.deleteGame);
-        server.put(settings.prefix + 'join-game/:id', settings.security.authorize, this.deleteGame)
+        server.put(settings.prefix + 'join/:id', settings.security.authorize, this.joinPendingGame);
+        server.put(settings.prefix + 'startgame/:id', settings.security.authorize, this.startPendingGame);
         console.log("Games routes registered");
     };    
 }

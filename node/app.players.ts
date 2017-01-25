@@ -108,6 +108,32 @@ export class Player {
             .catch(err => this.handleError(err, response, next));
     }
 
+    public registerPlayer = (request: any, response: any, next: any) => {
+        database.db.collection('players')
+            .findOne({ username: request.body.username })
+            .then(player => {
+                if(player !== null) {
+                    response.json({
+                        msg: util.format('Username already exists')
+                    });
+                } else {
+                    database.db.collection('players')
+                        .findOne({ email: request.body.email })
+                        .then(player => {
+                            if(player !== null) {
+                                response.json({
+                                    msg: util.format('Email already in use')
+                                });
+                            } else {
+                                this.createPlayer(request, response, next);
+                            }
+                        })
+                        .catch(err => this.handleError(err, response, next));
+                }
+            })
+            .catch(err => this.handleError(err, response, next));
+    }
+
     // Routes for the games
     public init = (server: any, settings: HandlerSettings) => {
         this.settings = settings;
@@ -117,6 +143,7 @@ export class Player {
         server.put(settings.prefix + 'players/:id', settings.security.authorize, this.updatePlayer);
         server.post(settings.prefix + 'register', settings.security.authorize, this.createPlayer);
         server.del(settings.prefix + 'players/:id', settings.security.authorize, this.deletePlayer);
+        server.post(settings.prefix + 'register', this.registerPlayer);
         console.log("Players routes registered");
     };
 }

@@ -18,11 +18,23 @@ export class GameLobbyComponent implements OnInit{
 				private router: Router){}
 
 	ngOnInit(){
-		this.suecaService.getNewPendingGame().subscribe((m: any) =>{
-			this.pendingGames.push(m);
-		});
 		this.refresh();
-		console.log(this.pendingGames);
+
+		this.suecaService.getNewPendingGame().subscribe((m: any) =>{
+			this.refresh();
+		});
+
+		this.suecaService.getDeleteGame().subscribe((m: any) => {
+			this.refresh();
+		});
+
+		this.suecaService.getJoinGame().subscribe((m: any) =>{
+			this.refresh();
+		})
+
+		
+
+
 	}
 
 	refresh(){
@@ -32,12 +44,12 @@ export class GameLobbyComponent implements OnInit{
 				this.pendingGames.push(game);
 			})
 		})
+
+		console.log(this.pendingGames);
 	}
 
 	createNewGame(){
-		let baralho: Baralho = new Baralho();
-
-		this.suecaService.createNewGame(this.authService.currentUser,baralho).subscribe((response: any) =>{
+		this.suecaService.createNewGame(this.authService.currentUser).subscribe((response: any) =>{
 			if(response){
 				this.suecaService.createSocketGame(response);
 				console.log(response);
@@ -50,19 +62,37 @@ export class GameLobbyComponent implements OnInit{
 
 	deletePendingGame(id: string) {
 		this.suecaService.deletePendingGame(id, this.authService.currentUser).subscribe((response: any) => {
-			//this.suecaService.sendDeleteGame();
+			this.suecaService.sendDeleteGame(id);
 		});
-		this.refresh();
 	}
 
 	joinPendingGame(i: number){
 		let game = this.pendingGames[i];
 		if(game.players.length < 4){
 			this.suecaService.joinPendingGame(this.authService.currentUser, game).subscribe((response: any) => {
-				//this.suecaService.joinSocketGame(response, this.authService.currentUser);
-				this.refresh();
+				this.suecaService.sendJoinGame(response, this.authService.currentUser);
 			});
 		}
+	}
+
+	startPendingGame(){
+		this.pendingGames.forEach( game => {
+			if(game.players.length == 4){
+				this.suecaService.startPendingGame(this.authService.currentUser, game).subscribe((response: any) => {
+					
+				});
+			}
+		});
+	}
+
+	isPlayerJoinned(i: number): boolean{
+		let isJoinned: boolean = false;
+		this.pendingGames[i].players.forEach( player => {
+			if( player._id == this.authService.currentUser._id){
+				return isJoinned = true;
+			}
+		})
+		return isJoinned;
 	}
 
 	

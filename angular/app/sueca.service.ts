@@ -39,7 +39,7 @@ export class SuecaService {
 		return this.channelListenning('new_game');
 	}
 
-	joinSocketGame(game: Game, player: User) {
+	sendJoinGame(game: Game, player: User) {
 		this.socket.emit('join_game', {game, player});
 	}
 
@@ -49,6 +49,26 @@ export class SuecaService {
 
     sendLobbyChatMessage(message: any) {
         this.socket.emit('chat-lobby', [JSON.parse(sessionStorage.getItem('player')).username] +': '+ message);
+    }
+
+    sendDeleteGame(message: any) {
+    	this.socket.emit('delete_game', message);
+    }
+
+    sendStartGame(game: Game) {
+    	this.socket.emit('start_game', game);
+    }
+
+    getDeleteGame(): Observable<any> {
+    	return this.channelListenning('delete_game');
+    }
+
+    getJoinGame(): Observable<any> {
+    	return this.channelListenning('update_game');
+    }
+
+    getStartGame(): Observable<any> {
+    	return this.channelListenning('start_game');
     }
 
     getPlayersMessages(): Observable<any> {
@@ -72,11 +92,11 @@ export class SuecaService {
 		return new RequestOptions({ headers: headers });
 	}
 
-	createNewGame(user: User, baralho: Baralho): Observable<string> {
+	createNewGame(user: User): Observable<string> {
 		let options = this.buildHeaders(user);
 
 		return this.http.post('http://localhost:7777/api/v1/games', 
-			{creatorId: user._id, creatorUsername: user.username , state: 'pending', baralho: {baralho}, players: [{ player: user, points: 0 }]}, options)
+			{creatorId: user._id, creatorUsername: user.username , state: 'pending', players: [user]} , options)
 			.map(response => {
 				return response.json();
 			})
@@ -123,7 +143,21 @@ export class SuecaService {
 	joinPendingGame(user: User, game: Game): Observable<any> {
 		let options = this.buildHeaders(user);
 
-		return this.http.put('http://localhost:7777/api/v1/join-game/'+ game._id, {player: user, score: 0} , options)
+		return this.http.put('http://localhost:7777/api/v1/join/'+ game._id, user , options)
+	      .map(res => {
+	        let resJSON = res.json();
+	        return resJSON;
+	      })
+	      .catch(e => {
+	        console.log(e);
+	        return Observable.throw(e);
+	      });
+	}
+
+	startPendingGame(user: User, game: Game): Observable<any> {
+		let options = this.buildHeaders(user);
+
+		return this.http.put('http://localhost:7777/api/v1/startgame/'+ game._id, null , options)
 	      .map(res => {
 	        let resJSON = res.json();
 	        return resJSON;

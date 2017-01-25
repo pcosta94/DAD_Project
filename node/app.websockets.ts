@@ -16,7 +16,7 @@ export class Player {
 export class WebSocketServer {
 
     public io: any;
-    
+    public games: Game[] = [];
 
     public init = (server: any) => {
         this.io = io.listen(server);   
@@ -26,19 +26,52 @@ export class WebSocketServer {
             
 
             client.on('new_game', (game) => {
-                let newGame = {
-                    mao: game.baralho.pMao,
+
+                let baralho: Baralho = new Baralho();
+
+                this.games[game._id] = new Game(game._id,game.creatorUsername,game.state,0,0,{},baralho,game.players);
+                
+                let playerGame = {
+                    gameId: game._id,
+                    mao: baralho.atribuirMao(),
                     pontos: 0,
                     renuncia: false,
                 };
 
-                client.player.username = game.players[0].player.username
-                client.player.games[game._id] = newGame;
+                client.player.games[game._id] = playerGame;
                 client.join(game._id);
                 client.broadcast.emit('new_game', game);
-                console.log(game._id);
                 client.broadcast.emit('palyers',  Date.now() + ': New game created by' + game.ceartorUsername );
                 
+            });
+
+            client.on('join_game', (data) => {
+
+                let baralho: any = this.games[data.game._id].baralho;
+
+                this.games[data.game._id].players.push(data.player);
+
+                let playerGame = {
+                    gameId: data.game._id,
+                    mao: baralho.atribuirMao(),
+                    pontos: 0,
+                    renuncia: false,
+                }
+
+                client.player.games[data.game._id] = playerGame;
+                client.join(data.game._id);
+                this.io.emit('update_game', 'User joinned game');
+
+            });
+
+            client.on('start_game', (game) => {
+                this.games[game._id].state = game.state;
+                this.games[game._id].gameStart = Date.now();
+                this.io.to(game._id).emit('start_game', this.games[game._id]);
+            });
+
+            client.on('delete_game', (data) => { 
+                this.io.emit('delete_game', 'Game deleted!'); 
             });
 
             client.emit('players', Date.now() + ': Welcome to Sueca');

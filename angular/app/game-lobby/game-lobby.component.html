@@ -2,6 +2,7 @@
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<h2>Pending Games List</h2>
+			<button class="btn btn-primary btn-block" type="button" (click)="createNewGame()">Create New Game</button>
 			<table class="table table-striped">
 				<thead>
 					<tr>
@@ -17,16 +18,19 @@
 					<tr *ngFor="let game of pendingGames; let i = index">
 						<td>{{i+1}}</td>
 						<td>{{game.creatorUsername}}</td>
+						<td *ngIf="game.players.length<2"></td>
+						<td *ngIf="game.players.length==2">{{game.players[1].username}}</td>
+						<td *ngIf="game.players.length<3"></td>
+						<td *ngIf="game.players.length==3">{{game.players[2].username}}</td>
+						<td *ngIf="game.players.length==4">{{game.players[2].username}} and {{game.players[3].username}}</td>
 						<td>{{game.players.length}}/4</td>
-						<td></td>
-						<td></td>
-						<td>
-							<button class="btn btn-success btn-block" type="button" *ngIf="game.creatorId != authService.currentUser._id" (click)="joinPendingGame(i)">Join Game</button>
+						<td *ngIf="!isPlayerJoinned(i)">
+							<button class="btn btn-success btn-block" type="button" *ngIf="game.creatorId != authService.currentUser._id"  (click)="joinPendingGame(i)">Join Game</button>
+						</td>
+						<td *ngIf="isPlayerJoinned(i)">
+							<button class="btn btn-warning btn-block" type="button" *ngIf="game.creatorId != authService.currentUser._id"  >Exit Game</button>
 							<button class="btn btn-danger btn-block" *ngIf="game.creatorId == authService.currentUser._id" (click)="deletePendingGame(game._id)">Delete Game</button>
 						</td>
-					</tr>
-					<tr>
-						<button class="btn btn-primary btn-block" type="button" (click)="createNewGame()">Create New Game</button>
 					</tr>
 				</tbody>
 			</table>

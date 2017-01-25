@@ -94,11 +94,25 @@ var Game = (function () {
                 return next();
             }
             app_database_1.databaseConnection.db.collection('games')
-                .updateOne({
-                _id: id
-            }, {
-                $push: { players: newPlayer }
-            })
+                .updateOne({ _id: id }, { $push: { players: newPlayer } })
+                .then(function (result) { return _this.returnGame(id, response, next); })
+                .catch(function (err) { return _this.handleError(err, response, next); });
+        };
+        this.startPendingGame = function (request, response, next) {
+            var id = new mongodb.ObjectID(request.params.id);
+            var time = new Date();
+            var dformat = [time.getMonth() + 1,
+                time.getDate(),
+                time.getFullYear()].join('/') + ' ' +
+                [time.getHours(),
+                    time.getMinutes(),
+                    time.getSeconds()].join(':');
+            if (id === undefined) {
+                response.send(400, 'No game data');
+                return next();
+            }
+            app_database_1.databaseConnection.db.collection('games')
+                .updateOne({ _id: id }, { $set: { state: 'playing', gameStart: dformat } })
                 .then(function (result) { return _this.returnGame(id, response, next); })
                 .catch(function (err) { return _this.handleError(err, response, next); });
         };
@@ -109,7 +123,8 @@ var Game = (function () {
             server.put(settings.prefix + 'games/:id', settings.security.authorize, _this.updateGame);
             server.post(settings.prefix + 'games', settings.security.authorize, _this.createGame);
             server.del(settings.prefix + 'games/:id', settings.security.authorize, _this.deleteGame);
-            server.put(settings.prefix + 'join-game/:id', settings.security.authorize, _this.deleteGame);
+            server.put(settings.prefix + 'join/:id', settings.security.authorize, _this.joinPendingGame);
+            server.put(settings.prefix + 'startgame/:id', settings.security.authorize, _this.startPendingGame);
             console.log("Games routes registered");
         };
     }

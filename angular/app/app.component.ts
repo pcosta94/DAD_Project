@@ -10,8 +10,6 @@ export class AppComponent  {
 	constructor(private auth: AuthService)
     {
     	if(sessionStorage != null){
-	        console.log('Tenho merdas na local');
-	        console.log(sessionStorage.getItem('player'));
         	auth.currentUser = JSON.parse(sessionStorage.getItem('player'));
 	    }
     }
