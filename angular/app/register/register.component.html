@@ -59,6 +59,14 @@
               </div>
             </div>
             <div class="form-group">
+              <label for="avatar" class="col-sm-5 col-md-4 control-label"><small class="text-muted"></small> Avatar</label>
+              <div class="col-sm-6 col-md-4">
+                <input type="avatar" class ="form-control" id="avatar" placeholder="url para avatar"
+                [(ngModel)]="model.avatar" name="avatar"
+                #avatar="ngModel" >
+              </div>
+            </div>
+            <div class="form-group">
               <label for="password" class="col-sm-5 col-md-4 control-label"><small class="text-muted">*</small> Password</label>
               <div class="col-sm-6 col-md-4">
                 <input type="password" class="form-control" id="password" placeholder="Password"
@@ -106,8 +114,14 @@
                   </div>
                 </div>
               </div>
+
             </div>
+
             <div class="form-group">
+              <p></p>
+              <p></p>
+              asdasdasda
+              <label id="co"> <small>campos obrigatorios *</small> </label>
               <div class="col-xs-6 col-xs-offset-6 col-sm-3 col-sm-offset-5 col-md-2 col-md-offset-4">
                 <button type="submit" class="btn btn-default" [disabled]="!newUserForm.form.valid">Registar</button>
               </div>

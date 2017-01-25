@@ -12,7 +12,7 @@ import { User }    from '../user';
 })
 
 export class RegisterComponent {
-    mailpattern = "^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$";
+    mailpattern = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     model = new User('', '', '', -1, 0, '', '', '', '');
     usernameTaken: boolean;
     emailTaken: boolean;

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { WebSocketService } from '../websocket.service';
+import {AuthService} from '../auth.service';
 
 @Component({
     moduleId: module.id,
@@ -8,7 +9,7 @@ import { WebSocketService } from '../websocket.service';
 })
 export class ChatComponent {
     message: string;
-    constructor(private websocketService: WebSocketService) {}
+    constructor(private websocketService: WebSocketService, private auth: AuthService) {}
     send(): void {
 
         this.websocketService.sendChatMessage(this.message);

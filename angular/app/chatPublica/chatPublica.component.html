@@ -1,4 +1,5 @@
-<form #messageForm="ngForm">
+<form #messageForm="ngForm" *ngIf="auth.isLoggedIn()">
+
     <input name="message" placeholder="Escreva uma mensagem" size="50" required
             [(ngModel)]="message"
         >

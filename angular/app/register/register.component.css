@@ -10,3 +10,8 @@
 .ng-touched:not(form) {
   border-left: 5px solid #a94442; /* red */
 }
+
+#co {
+  padding-left: 230px;
+  float: left;
+}
