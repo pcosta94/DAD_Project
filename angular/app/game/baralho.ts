@@ -65,23 +65,4 @@ export class Baralho {
 		this.qMao = cartas.slice(30,40); 
 	}
 
-	public atribuirMao(maos: Carta[]): Carta[]{
-		if(this.maosDistribuidas == 0){
-			this.maosDistribuidas++;
-			return this.pMao;
-		}
-		if(this.maosDistribuidas == 1){
-			this.maosDistribuidas++;
-			return this.sMao;
-		}
-		if(this.maosDistribuidas == 2){
-			this.maosDistribuidas++;
-			return this.tMao;
-		}
-		if(this.maosDistribuidas == 3){
-			this.maosDistribuidas++;
-			return this.qMao;
-		}
-	}
-
 }

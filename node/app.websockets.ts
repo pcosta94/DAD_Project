@@ -1,12 +1,14 @@
 const io = require('socket.io');
 import { Baralho } from '../angular/app/game/baralho';
+import { Game } from '../angular/app/game/game';
+
 
 export class Player {
     public username: string;
     public games;
 
-    constructor() {
-        this.username = "";
+    constructor(){
+        this.username = '';
         this.games = {};
     }
 }
@@ -14,25 +16,29 @@ export class Player {
 export class WebSocketServer {
 
     public io: any;
+    
 
     public init = (server: any) => {
         this.io = io.listen(server);   
 
         this.io.sockets.on('connection', (client: any) => {
             client.player = new Player();
-
             
 
-            client.on('new_game', (data) => {
-                let game = {
-                    gameState: data.game.state,
-                    mao: data.baralho.atribuirMao(),
+            client.on('new_game', (game) => {
+                let newGame = {
+                    mao: game.baralho.pMao,
                     pontos: 0,
-                    equipa: {},
+                    renuncia: false,
                 };
-                client.player.games[data.game._id] = game;
-                client.join(data.game._id);
-                client.broadcast.emit('new_game',data);
+
+                client.player.username = game.players[0].player.username
+                client.player.games[game._id] = newGame;
+                client.join(game._id);
+                client.broadcast.emit('new_game', game);
+                console.log(game._id);
+                client.broadcast.emit('palyers',  Date.now() + ': New game created by' + game.ceartorUsername );
+                
             });
 
             client.emit('players', Date.now() + ': Welcome to Sueca');

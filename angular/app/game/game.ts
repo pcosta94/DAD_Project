@@ -5,8 +5,8 @@ export class Game {
 		public state: string,
 		public gameStart: string,
 		public gameEnd: string,
-		public winnersId: string[],
+		public winnerTeam: {},
 		public baralho: {},
-		public players: [{}]
+		public players: [{}],
 	){}
 }

@@ -31,8 +31,12 @@ export class SuecaService {
   		});
 	}
 
-	createSocketGame(game: Game, baralho: Baralho) {
-		this.socket.emit('new_game', {game, baralho});
+	createSocketGame(game: any) {
+		this.socket.emit('new_game', game);
+	}
+
+	getNewPendingGame() {
+		return this.channelListenning('new_game');
 	}
 
 	joinSocketGame(game: Game, player: User) {
@@ -72,7 +76,7 @@ export class SuecaService {
 		let options = this.buildHeaders(user);
 
 		return this.http.post('http://localhost:7777/api/v1/games', 
-			{creatorId: user._id, creatorUsername: user.username , state: 'pending', baralho: {baralho}, players: [{ player: user._id, points: 0 }]}, options)
+			{creatorId: user._id, creatorUsername: user.username , state: 'pending', baralho: {baralho}, players: [{ player: user, points: 0 }]}, options)
 			.map(response => {
 				return response.json();
 			})
@@ -119,7 +123,7 @@ export class SuecaService {
 	joinPendingGame(user: User, game: Game): Observable<any> {
 		let options = this.buildHeaders(user);
 
-		return this.http.put('http://localhost:7777/api/v1/joingame/'+ game._id, {player: user._id, score: 0} , options)
+		return this.http.put('http://localhost:7777/api/v1/join-game/'+ game._id, {player: user, score: 0} , options)
 	      .map(res => {
 	        let resJSON = res.json();
 	        return resJSON;

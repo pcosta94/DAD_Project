@@ -18,6 +18,9 @@ export class GameLobbyComponent implements OnInit{
 				private router: Router){}
 
 	ngOnInit(){
+		this.suecaService.getNewPendingGame().subscribe((m: any) =>{
+			this.pendingGames.push(m);
+		});
 		this.refresh();
 		console.log(this.pendingGames);
 	}
@@ -36,7 +39,7 @@ export class GameLobbyComponent implements OnInit{
 
 		this.suecaService.createNewGame(this.authService.currentUser,baralho).subscribe((response: any) =>{
 			if(response){
-				this.suecaService.createSocketGame(response,baralho);
+				this.suecaService.createSocketGame(response);
 				console.log(response);
 				this.pendingGames.push(response);
 			}else{
@@ -56,7 +59,8 @@ export class GameLobbyComponent implements OnInit{
 		let game = this.pendingGames[i];
 		if(game.players.length < 4){
 			this.suecaService.joinPendingGame(this.authService.currentUser, game).subscribe((response: any) => {
-				this.suecaService.joinSocketGame(response, this.authService.currentUser);
+				//this.suecaService.joinSocketGame(response, this.authService.currentUser);
+				this.refresh();
 			});
 		}
 	}

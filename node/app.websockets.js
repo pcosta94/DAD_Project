@@ -2,7 +2,7 @@
 var io = require('socket.io');
 var Player = (function () {
     function Player() {
-        this.username = "";
+        this.username = '';
         this.games = {};
     }
     return Player;
@@ -15,16 +15,18 @@ var WebSocketServer = (function () {
             _this.io = io.listen(server);
             _this.io.sockets.on('connection', function (client) {
                 client.player = new Player();
-                client.on('new_game', function (data) {
-                    var game = {
-                        gameState: data.game.state,
-                        mao: data.baralho.atribuirMao(),
+                client.on('new_game', function (game) {
+                    var newGame = {
+                        mao: game.baralho.pMao,
                         pontos: 0,
-                        equipa: {},
+                        renuncia: false,
                     };
-                    client.player.games[data.game._id] = game;
-                    client.join(data.game._id);
-                    client.broadcast.emit('new_game', data);
+                    client.player.username = game.players[0].player.username;
+                    client.player.games[game._id] = newGame;
+                    client.join(game._id);
+                    client.broadcast.emit('new_game', game);
+                    console.log(game._id);
+                    client.broadcast.emit('palyers', Date.now() + ': New game created by' + game.ceartorUsername);
                 });
                 client.emit('players', Date.now() + ': Welcome to Sueca');
                 client.broadcast.emit('players', Date.now() + ': A new player has arrived');
