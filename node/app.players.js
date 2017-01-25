@@ -100,10 +100,34 @@ var Player = (function () {
             })
                 .catch(function (err) { return _this.handleError(err, response, next); });
         };
-        // Routes for the games
+        this.getTop10ByVictories = function (request, response, next) {
+            app_database_1.databaseConnection.db.collection('players')
+                .find()
+                .sort({ totalVictories: -1 })
+                .limit(10)
+                .toArray()
+                .then(function (players) {
+                response.json(players || []);
+                next();
+            })
+                .catch(function (err) { return _this.handleError(err, response, next); });
+        };
+        this.getTop10ByScore = function (request, response, next) {
+            app_database_1.databaseConnection.db.collection('players')
+                .find()
+                .sort({ totalScore: -1 })
+                .limit(10)
+                .toArray()
+                .then(function (players) {
+                response.json(players || []);
+                next();
+            })
+                .catch(function (err) { return _this.handleError(err, response, next); });
+        };
         this.init = function (server, settings) {
             _this.settings = settings;
-            server.get(settings.prefix + 'top10', _this.getTop10);
+            server.get(settings.prefix + 'top10ByVictories', _this.getTop10ByVictories);
+            server.get(settings.prefix + 'top10ByScore', _this.getTop10ByScore);
             server.get(settings.prefix + 'players', settings.security.authorize, _this.getPlayers);
             server.get(settings.prefix + 'players/:id', settings.security.authorize, _this.getPlayer);
             server.put(settings.prefix + 'players/:id', settings.security.authorize, _this.updatePlayer);

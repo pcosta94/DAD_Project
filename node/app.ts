@@ -6,18 +6,19 @@ import {databaseConnection as database} from './app.database';
 import {WebSocketServer} from './app.websockets';
 import {HandlerSettings} from './handler.settings';
 
-const url = 'mongodb://localhost:27017/sueca_database';
+const url = 'mongodb://localhost:27017/sueca';
 
 // Create Restify and WebSocket Server
 const restifyServer = restify.createServer();
 const socketServer = new WebSocketServer();
 
 // Prepare and configure Restify Server
+restifyServer.use(restify.CORS());
 restify.CORS.ALLOW_HEADERS.push("content-type");
 restify.CORS.ALLOW_HEADERS.push("authorization");
 restifyServer.use(restify.bodyParser());
 restifyServer.use(restify.queryParser());
-restifyServer.use(restify.CORS());
+
 restifyServer.use(restify.fullResponse());
 
 // Prepare and configure Passport based security

@@ -6,6 +6,7 @@ import { GameComponent }	from './game/game.component';
 import { HomeComponent }	from './home/home.component';
 import { GameLobbyComponent } from './game-lobby/game-lobby.component';
 import { RegisterComponent } from './register/register.component';
+import { Top10Component } from './top10/top10.component';
 
 
 const routes: Routes = [
@@ -14,7 +15,9 @@ const routes: Routes = [
   {	path: 'login', component: LogInComponent },
   { path: 'game', component: GameComponent, canActivate: [UserLoggedGuard]},
   { path: 'lobby', component: GameLobbyComponent, canActivate: [UserLoggedGuard] },
-  { path: 'register', component: RegisterComponent}
+  { path: 'register', component: RegisterComponent},
+  { path: 'top10', component: Top10Component}
+
 ];
 
 @NgModule({

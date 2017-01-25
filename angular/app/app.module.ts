@@ -15,19 +15,20 @@ import { GameLobbyComponent } from './game-lobby/game-lobby.component';
 import { ChatComponent } from './chat/chat.component';
 import { NotificationModule } from './notifications/notification.module';
 import { LobbyChatComponent } from './game-lobby/lobby-chat.component';
+import { Top10Component } from './top10/top10.component';
+import { Top10Service } from './top10.service';
 
 
- 
 
 @NgModule({
-  imports: [ 
+  imports: [
   	BrowserModule,
-  	HttpModule, 
+  	HttpModule,
   	FormsModule,
     RoutingModule,
     NotificationModule
   ],
-  declarations: [ 
+  declarations: [
   	AppComponent,
     GameComponent,
     LogInComponent,
@@ -35,12 +36,15 @@ import { LobbyChatComponent } from './game-lobby/lobby-chat.component';
     GameLobbyComponent,
     RegisterComponent,
     ChatComponent,
-    LobbyChatComponent
+    LobbyChatComponent,
+    Top10Component
   ],
-  providers: [ 
+  providers: [
   	AuthService,
     SuecaService,
-    UserLoggedGuard
+    UserLoggedGuard,
+    Top10Service
+
   ],
   bootstrap: [ AppComponent ]
 })
