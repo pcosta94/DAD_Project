@@ -7,6 +7,7 @@ export class Carta {
 	public naipe: Naipe;
 	public pontos: number;
 	public imagePath: string;
+	
 
 	public constructor(naipe: any, tipo: any){
 		this.naipe = naipe;

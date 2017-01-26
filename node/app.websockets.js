@@ -18,14 +18,24 @@ var WebSocketServer = (function () {
             _this.io = io.listen(server);
             _this.io.sockets.on('connection', function (client) {
                 client.player = new Player();
+                client.on('login', function (loggedUser) {
+                    client.player.username = loggedUser.username;
+                    var date = new Date();
+                    var dateFormat = [date.getMonth() + 1, date.getDate(), date.getFullYear()].join('/') + ' - ' +
+                        [date.getHours(), date.getMinutes(), date.getSeconds()].join(':');
+                    client.broadcast.emit('players', dateFormat + ': ' + loggedUser.username + ' ligou-se ao jogo.');
+                });
                 client.on('delete_game', function (id) {
                     client.player.games[id] = [];
+                    _this.games[id] = [];
+                    _this.games = [];
+                    console.log(_this.games);
                     _this.io.emit('delete_game', 'Game deleted!');
                 });
                 client.on('new_game', function (data) {
                     var baralho = new baralho_1.Baralho();
                     _this.games[data.game._id] = new game_1.Game(data.game._id, data.game.creatorUsername, data.game.state, 0, 0, {}, baralho, data.game.players);
-                    console.log(_this.games[data.game._id]);
+                    //console.log(this.games[data.game._id]);
                     var playerGame = {
                         username: data.user.username,
                         gameId: data.game._id,
@@ -33,7 +43,7 @@ var WebSocketServer = (function () {
                         pontos: 0,
                         renuncia: false,
                     };
-                    console.log(playerGame.mao);
+                    //console.log(playerGame.mao);
                     client.player.games[data.game._id] = playerGame;
                     client.join(data.game._id);
                     client.broadcast.emit('new_game', data.game);
@@ -41,9 +51,9 @@ var WebSocketServer = (function () {
                 });
                 client.on('join_game', function (data) {
                     var baralho = _this.games[data.game._id].baralho;
-                    _this.games[data.game._id].players.push(data.player);
+                    _this.games[data.game._id].players.push(data.user);
                     var playerGame = {
-                        username: data.player.username,
+                        username: data.user.username,
                         gameId: data.game._id,
                         mao: baralho.atribuirMao(),
                         pontos: 0,
@@ -56,7 +66,7 @@ var WebSocketServer = (function () {
                 client.on('start_game', function (game) {
                     _this.games[game._id].state = game.state;
                     _this.games[game._id].gameStart = Date.now();
-                    console.log(client.player.games[game._id]);
+                    //console.log(client.player.games[game._id]);
                     _this.io.to(game._id).emit('start_game', game._id);
                 });
                 client.on('playing_game', function (id) {

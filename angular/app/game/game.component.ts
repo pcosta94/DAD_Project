@@ -18,7 +18,11 @@ export class GameComponent implements OnInit {
 	public maoDeCartas: any[] = [];
 	public pontosGanhos: number;
 	public gameId: any;
-	public playingGame: any;
+	public playingGame: any[] = [];
+	public jogada: any[] = [];
+
+	
+
 
 	constructor(private authService: AuthService, 
 				private suecaService: SuecaService, 
@@ -34,9 +38,12 @@ export class GameComponent implements OnInit {
 		this.suecaService.sendGetPlayingGame(this.gameId);
 
 		this.suecaService.getGame().subscribe((m: any) => {
-			console.log(m);
-			this.playingGame = m;
+			if(m.username == this.authService.currentUser.username){
+				this.playingGame.push(m);
+				this.maoDeCartas = this.playingGame[0].mao;	
+			}
 		});
+
 
 		//this.maoDeCartas = baralho.primeiraMao;
 		console.log(this.playingGame);
@@ -54,7 +61,10 @@ export class GameComponent implements OnInit {
 
 		// 	this.image = this.carta.imagePath;
 		// 	console.log(this.carta);
-	}
+	}	
 
+	playCard(card: any){
+		
+	}
 	
 }

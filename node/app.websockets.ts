@@ -16,16 +16,28 @@ export class Player {
 export class WebSocketServer {
 
     public io: any;
-    public games: Game[] = [];
+    public games: any[] = [];
 
     public init = (server: any) => {
         this.io = io.listen(server);   
 
         this.io.sockets.on('connection', (client: any) => {
             client.player = new Player();
-            
+
+            client.on('login', (loggedUser) => {
+                client.player.username = loggedUser.username;
+                let date = new Date();
+                let dateFormat = [date.getMonth() + 1,  date.getDate(), date.getFullYear()].join('/') + ' - ' +
+                    [date.getHours(), date.getMinutes(), date.getSeconds()].join(':');
+
+                client.broadcast.emit('players', dateFormat + ': ' + loggedUser.username  + ' ligou-se ao jogo.');
+            });
+
             client.on('delete_game', (id) => {
                 client.player.games[id] = [];
+                this.games[id]  = [];
+                this.games = [];
+                console.log(this.games);
                 this.io.emit('delete_game', 'Game deleted!'); 
             });
 
@@ -34,7 +46,7 @@ export class WebSocketServer {
                 let baralho: Baralho = new Baralho();
 
                 this.games[data.game._id] = new Game(data.game._id,data.game.creatorUsername,data.game.state,0,0,{},baralho,data.game.players);
-                console.log(this.games[data.game._id]);
+                //console.log(this.games[data.game._id]);
                 let playerGame = {
                     username: data.user.username,
                     gameId: data.game._id,
@@ -42,8 +54,7 @@ export class WebSocketServer {
                     pontos: 0,
                     renuncia: false,
                 };
-                console.log(playerGame.mao);
-
+                //console.log(playerGame.mao);
                 client.player.games[data.game._id] = playerGame;
                 client.join(data.game._id);
                 client.broadcast.emit('new_game', data.game);
@@ -55,16 +66,16 @@ export class WebSocketServer {
 
                 let baralho: any = this.games[data.game._id].baralho;
 
-                this.games[data.game._id].players.push(data.player);
+                this.games[data.game._id].players.push(data.user);
 
                 let playerGame = {
-                    username: data.player.username,
+                    username: data.user.username,
                     gameId: data.game._id,
                     mao: baralho.atribuirMao(),
                     pontos: 0,
                     renuncia: false,
                 }
-
+                
                 client.player.games[data.game._id] = playerGame;
                 client.join(data.game._id);
                 this.io.emit('update_game', 'User joinned game');
@@ -74,7 +85,7 @@ export class WebSocketServer {
             client.on('start_game', (game) => {
                 this.games[game._id].state = game.state;
                 this.games[game._id].gameStart = Date.now();
-                console.log(client.player.games[game._id]);
+                //console.log(client.player.games[game._id]);
                 this.io.to(game._id).emit('start_game', game._id);
             });
 

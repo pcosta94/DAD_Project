@@ -9,16 +9,47 @@ h1,h2 {
 /*.container {
 	text-align: center;
 }*/
+.image_oponent{
+    padding-top: 120px;
+}
+
+.image_team {
+	padding-left: 300px; 
+}
+/*
+img { 
+	display: inline-block;
+    height: 130px; width: 70px;
+}*/
+.card{
+	height: 120px;
+   	width: 60px;
+   	margin-left: -90px;
+}
+
+.card_team {
+	height: 120px;
+   	width: 60px;
+   	margin-left: -90px;
+}
+
+.card_oponent {
+  height: 120px;
+  width: 60px;
+  transform: rotate(90deg);
+  margin-top: -90px;
+}
 
 .card_image {
-	width: 60px;
-	height: 110px;
+	
 	/*
 	display: inline-flex;
 	margin-left: -102px;
 	http://stackoverflow.com/questions/22362945/responsive-playing-card-design-with-css-html
 	*/
 }
+
+
 
 
 .navbar_backgroung {

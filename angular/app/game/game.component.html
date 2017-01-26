@@ -1,15 +1,23 @@
 <div class="container">
 	<div class="row">
-		<div class="col-md-8 col-md-offset-2">
-			<img *ngFor="let mao of maoDeCartas" [src]="mao.imagePath" class="card_image"/>
+		<div class="col-md-5 col-md-offset-8">
+			<img *ngFor="let it of [0,1,2,3,4,5,6,7,8,9]" src="cards/semFace.png" class="card_team" />
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-2">
-			<img *ngFor="let it of [0,1,2,3,4,5,6,7,8,9]" src="cards/semFace.png" class="card_image"/>
+		<div class="col-md-1 col-md-offset-2 image_oponent" >
+			<img *ngFor="let it of [0,1,2,3,4,5,6,7,8,9]" src="cards/semFace.png" class="card_oponent" />
 		</div>
-		<div class="col-md-2 col-md-offset-10">
-			<img *ngFor="let it of [0,1,2,3,4,5,6,7,8,9]" src="cards/semFace.png" class="card_image"/>
+		<div class="col-md-7">
+			
+		</div>
+		<div class="col-md-1 image_oponent">
+			<img *ngFor="let it of [0,1,2,3,4,5,6,7,8,9]" src="cards/semFace.png" class="card_oponent" />
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-5 col-md-offset-8">
+			<img *ngFor="let carta of maoDeCartas" [src]="carta.imagePath" class="card" onClick="playCard(carta)"/>
 		</div>
 	</div>
 </div>

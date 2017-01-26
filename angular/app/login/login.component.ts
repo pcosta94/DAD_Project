@@ -28,7 +28,7 @@ export class LogInComponent {
                 this.loginFailed = false;
                 console.log(loggedInUser);
                 sessionStorage.setItem('player', JSON.stringify(loggedInUser));
-                //this.suecaService.sendLoginMessage(loggedInUser);
+                this.suecaService.sendLoginUser(loggedInUser);
                 this.router.navigateByUrl('/');
             } else {
                 this.loginFailed = true;

@@ -4,6 +4,70 @@
 		"selected_items":
 		[
 			[
+				"p",
+				"playingGame	property"
+			],
+			[
+				"pa",
+				"padding-left"
+			],
+			[
+				"ma",
+				"margin-left"
+			],
+			[
+				"a",
+				"authService	property"
+			],
+			[
+				"g",
+				"getPlayingGame	method"
+			],
+			[
+				"se",
+				"sendGetPlayingGame	method"
+			],
+			[
+				"ob",
+				"Observable	alias"
+			],
+			[
+				"gam",
+				"game_id	parameter"
+			],
+			[
+				"is",
+				"isJoinned	let"
+			],
+			[
+				"us",
+				"user	script"
+			],
+			[
+				"number",
+				"number	keyword"
+			],
+			[
+				"s",
+				"startPendingGame	method"
+			],
+			[
+				"f",
+				"forEach	method"
+			],
+			[
+				"imp",
+				"import	imports a module …"
+			],
+			[
+				"new",
+				"newGame	let"
+			],
+			[
+				"lo",
+				"loggedInUser	parameter"
+			],
+			[
 				"c",
 				"chat.component	script"
 			],
@@ -20,16 +84,8 @@
 				"inicio	local var"
 			],
 			[
-				"s",
-				"slice	method"
-			],
-			[
 				"game",
 				"game	directory"
-			],
-			[
-				"new",
-				"newPlayer	const"
 			],
 			[
 				"user",
@@ -88,10 +144,6 @@
 				"SuecaService	alias"
 			],
 			[
-				"ma",
-				"margin-left"
-			],
-			[
 				"inli",
 				"inline-flex"
 			],
@@ -116,10 +168,6 @@
 				"String	interface"
 			],
 			[
-				"is",
-				"isNaN	function"
-			],
-			[
 				"do",
 				"Dois	var"
 			],
@@ -140,16 +188,8 @@
 				"any	keyword"
 			],
 			[
-				"imp",
-				"implements	keyword"
-			],
-			[
 				"tem",
 				"templateUrl	property"
-			],
-			[
-				"p",
-				"push	method"
 			],
 			[
 				"bara",
@@ -182,10 +222,6 @@
 			[
 				"w",
 				"wsServer"
-			],
-			[
-				"g",
-				"getPlayersMessages	method"
 			],
 			[
 				"ap",
@@ -224,10 +260,6 @@
 				"Observable	alias"
 			],
 			[
-				"se",
-				"searchItem	parameter"
-			],
-			[
 				"pri",
 				"private	keyword"
 			],
@@ -262,10 +294,6 @@
 			[
 				"ha",
 				"hasClass"
-			],
-			[
-				"a",
-				"animateQuandrant"
 			],
 			[
 				"ec",
@@ -472,10 +500,6 @@
 				"emails"
 			],
 			[
-				"us",
-				"user"
-			],
-			[
 				"confir",
 				"confirmation_code"
 			],
@@ -490,99 +514,72 @@
 			[
 				"med",
 				"media"
-			],
-			[
-				"media",
-				"media_url"
-			],
-			[
-				"e",
-				"elseif	elseif …"
-			],
-			[
-				"max",
-				"maxNbChars"
-			],
-			[
-				"use",
-				"users"
-			],
-			[
-				"be",
-				"belongsTo"
-			],
-			[
-				"has",
-				"hasMany"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"contents": "const io = require('socket.io');\nimport { Baralho } from '../angular/app/game/baralho';\nimport { Game } from '../angular/app/game/game';\n\n\nexport class Player {\n    public username: string = '';\n    public games: Game[] = [];\n    public mao: Carta[] = [];\n    public pontos: number = 0;\n    public renuncia: boolean = false;\n\n    constructor(){}\n}\n\nexport class WebSocketServer {\n\n    public io: any;\n    public games: Game[] = [];\n\n    public init = (server: any) => {\n        this.io = io.listen(server);   \n\n        this.io.sockets.on('connection', (client: any) => {\n            client.player = new Player();\n            \n\n            client.on('new_game', (game) => {\n                \n                client.player.username = game.players[0].player.username\n                client.player.pontos = game.players[0].pontos;\n                client.player.games.push(game);\n                this.games[game._id] = game;\n                client.join(game._id);\n                console.log(this.games[game._id]);\n                this.io.emit('new_game', Date.now() + ': Game created by' + game.creatorUsername);\n            });\n\n            client.emit('players', Date.now() + ': Welcome to Sueca');\n            client.broadcast.emit('players', Date.now() + ': A new player has arrived');\n            client.on('chat', (data) => this.io.emit('chat', data));\n            client.on('chat-lobby', (data) => this.io.emit('chat', data));                     \n        });\n\n    };\n\n\n\n    public notifyAll = (channel: string, message: string) => {\n        this.io.sockets.emit(channel, message);\n    };\n\n\n};\n",
-			"file": "node/app.websockets.ts",
-			"file_size": 1594,
-			"file_write_time": 131297552020264924,
+			"file": "angular/app/sueca.service.ts",
 			"settings":
 			{
-				"buffer_size": 1596,
+				"buffer_size": 5139,
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "node/app.websockets.ts",
+			"settings":
+			{
+				"buffer_size": 3897,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "angular/app/login/login.component.ts",
+			"settings":
+			{
+				"buffer_size": 1181,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "angular/app/game/game.component.html",
+			"settings":
+			{
+				"buffer_size": 764,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "angular/styles.css",
+			"settings":
+			{
+				"buffer_size": 1301,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "angular/app/auth.service.ts",
+			"settings":
+			{
+				"buffer_size": 2096,
+				"line_ending": "Unix"
 			}
 		},
 		{
 			"file": "angular/app/game-lobby/game-lobby.component.ts",
 			"settings":
 			{
-				"buffer_size": 1815,
+				"buffer_size": 2496,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "angular/app/sueca.service.ts",
+			"file": "angular/app/game/game.component.ts",
 			"settings":
 			{
-				"buffer_size": 3681,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "node/app.games.ts",
-			"settings":
-			{
-				"buffer_size": 4353,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "angular/app/game-lobby/game-lobby.component.html",
-			"settings":
-			{
-				"buffer_size": 1176,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "angular/app/game-lobby/lobby-chat.component.html",
-			"settings":
-			{
-				"buffer_size": 321,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "angular/app/game/game.ts",
-			"settings":
-			{
-				"buffer_size": 245,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "angular/app/game/baralho.ts",
-			"settings":
-			{
-				"buffer_size": 1785,
+				"buffer_size": 1712,
 				"line_ending": "Windows"
 			}
 		}
@@ -639,44 +636,47 @@
 		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/game",
 		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/game-lobby",
 		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/home",
+		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/login",
 		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/notifications",
+		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/register",
 		"/C/Users/guilh/Documents/GitHub/DAD_Project/node"
 	],
 	"file_history":
 	[
-		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/game-lobby/game-lobby.component.ts",
-		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/sueca.service.ts",
-		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/game/game.ts",
-		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/game/baralho.ts",
 		"/C/Users/guilh/Documents/GitHub/DAD_Project/node/app.websockets.ts",
+		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/game-lobby/game-lobby.component.html",
+		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/routing.module.ts",
 		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/game/game.component.ts",
+		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/game-lobby/game-lobby.component.ts",
+		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/game/game.ts",
+		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/game/carta.ts",
+		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/index.html",
+		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/sueca.service.ts",
+		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/register/register.component.html",
+		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/register/register.component.ts",
+		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/auth.service.ts",
+		"/C/Users/guilh/Documents/GitHub/DAD_Project/node/app.players.ts",
+		"/C/Users/guilh/Documents/GitHub/DAD_Project/node/app.games.ts",
+		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/game/baralho.ts",
+		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/app.component.ts",
+		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/login/login.component.ts",
 		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/game-lobby/lobby-chat.component.html",
 		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/game-lobby/lobby-chat.component.ts",
 		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/chat/chat.component.ts",
 		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/home/home.component.ts",
-		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/routing.module.ts",
 		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/app.module.ts",
 		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/home/home.component.html",
 		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/notifications/notification.component.html",
 		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/chat/chat.component.html",
-		"/C/Users/guilh/Documents/GitHub/DAD_Project/node/app.games.ts",
-		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/game-lobby/game-lobby.component.html",
 		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/notifications/notification.component.ts",
 		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/game-lobby/lobby-chat.compoment.ts",
 		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/home.component.html",
 		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/home.component.ts",
 		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/app.component.html",
-		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/register/register.component.html",
-		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/register/register.component.ts",
 		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/user-logged.guard.ts",
-		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/auth.service.ts",
-		"/C/Users/guilh/Documents/GitHub/DAD_Project/node/app.players.ts",
 		"/C/Users/guilh/Documents/GitHub/DAD_Project/node/app.ts",
 		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/game/game.component.html",
-		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/login/login.component.ts",
-		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/app.component.ts",
 		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/authentication/auth.service.ts",
-		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/game/carta.ts",
 		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/user.ts",
 		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/authentication/sign-in.component.ts",
 		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/game/maos.ts",
@@ -684,7 +684,6 @@
 		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/home.component.html",
 		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/styles.css",
 		"/C/Users/guilh/Documents/GitHub/DAD_Project/node/package.json",
-		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/index.html",
 		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/app/game/routing.module.ts",
 		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/package.json",
 		"/C/Users/guilh/Documents/GitHub/DAD_Project/angular/node_modules/protractor/built/ptor.d.ts",
@@ -789,6 +788,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"60px",
+			"game",
+			", ",
+			"joinGame",
 			"Confirmation",
 			"isLoggedIn",
 			"{",
@@ -858,24 +861,59 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 7,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "node/app.websockets.ts",
+					"file": "angular/app/sueca.service.ts",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1596,
+						"buffer_size": 5139,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1045,
-								1045
+								1815,
+								1815
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/TypeScript/TypeScript.tmLanguage",
+							"typescript_plugin_format_options":
+							{
+								"convertTabsToSpaces": false,
+								"indentSize": 4,
+								"tabSize": 4
+							},
+							"use_tab_stops": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 924.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "node/app.websockets.ts",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3897,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1240,
+								1240
 							]
 						],
 						"settings":
@@ -892,34 +930,70 @@
 							"use_tab_stops": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 396.0,
+						"translation.y": 858.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
-					"buffer": 1,
-					"file": "angular/app/game-lobby/game-lobby.component.ts",
+					"buffer": 2,
+					"file": "angular/app/login/login.component.ts",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1815,
+						"buffer_size": 1181,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								607,
-								624
+								29,
+								29
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/TypeScript/TypeScript.tmLanguage",
-							"translate_tabs_to_spaces": false,
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"typescript_plugin_format_options":
+							{
+								"convertTabsToSpaces": true,
+								"indentSize": 4,
+								"tabSize": 4
+							},
 							"use_tab_stops": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "angular/app/game/game.component.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 764,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								729,
+								729
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -929,20 +1003,85 @@
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "angular/app/sueca.service.ts",
+					"buffer": 4,
+					"file": "angular/styles.css",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3681,
+						"buffer_size": 1301,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1044,
-								1044
+								388,
+								388
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 132.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "angular/app/auth.service.ts",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2096,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/TypeScript/TypeScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"typescript_plugin_format_options":
+							{
+								"convertTabsToSpaces": true,
+								"indentSize": 4,
+								"tabSize": 4
+							},
+							"use_tab_stops": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 66.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "angular/app/game-lobby/game-lobby.component.ts",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2496,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								864,
+								864
 							]
 						],
 						"settings":
@@ -958,171 +1097,46 @@
 							"use_tab_stops": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 719.0,
+						"translation.y": 726.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "node/app.games.ts",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4353,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3323,
-								3323
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/TypeScript/TypeScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true,
-							"use_tab_stops": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "angular/app/game-lobby/game-lobby.component.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1176,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								919,
-								919
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"translate_tabs_to_spaces": false,
-							"typescript_plugin_format_options":
-							{
-								"convertTabsToSpaces": false,
-								"indentSize": 4,
-								"tabSize": 4
-							}
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "angular/app/game-lobby/lobby-chat.component.html",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 321,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"translate_tabs_to_spaces": false,
-							"typescript_plugin_format_options":
-							{
-								"convertTabsToSpaces": false,
-								"indentSize": 4,
-								"tabSize": 4
-							}
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "angular/app/game/game.ts",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 245,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								238,
-								238
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/TypeScript/TypeScript.tmLanguage",
-							"translate_tabs_to_spaces": false,
-							"use_tab_stops": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
 					"buffer": 7,
-					"file": "angular/app/game/baralho.ts",
+					"file": "angular/app/game/game.component.ts",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1785,
+						"buffer_size": 1712,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1042,
-								1042
+								1705,
+								1705
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/TypeScript/TypeScript.tmLanguage",
 							"translate_tabs_to_spaces": false,
+							"typescript_plugin_format_options":
+							{
+								"convertTabsToSpaces": false,
+								"indentSize": 4,
+								"tabSize": 4
+							},
 							"use_tab_stops": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 330.0,
+						"translation.y": 264.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
