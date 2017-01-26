@@ -31,8 +31,8 @@ export class SuecaService {
   		});
 	}
 
-	createSocketGame(game: any) {
-		this.socket.emit('new_game', game);
+	createSocketGame(game: any, user: any) {
+		this.socket.emit('new_game', {game, user});
 	}
 
 	getNewPendingGame() {

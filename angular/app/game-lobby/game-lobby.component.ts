@@ -49,7 +49,7 @@ export class GameLobbyComponent implements OnInit{
 	createNewGame(){
 		this.suecaService.createNewGame(this.authService.currentUser).subscribe((response: any) =>{
 			if(response){
-				this.suecaService.createSocketGame(response);
+				this.suecaService.createSocketGame(response, this.authService.currentUser);
 				this.pendingGames.push(response);
 			}else{
 				console.error('Não foi possivel criar o jogo');

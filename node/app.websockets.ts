@@ -29,23 +29,25 @@ export class WebSocketServer {
                 this.io.emit('delete_game', 'Game deleted!'); 
             });
 
-            client.on('new_game', (game) => {
+            client.on('new_game', (data) => {
 
                 let baralho: Baralho = new Baralho();
 
-                this.games[game._id] = new Game(game._id,game.creatorUsername,game.state,0,0,{},baralho,game.players);
-                
+                this.games[data.game._id] = new Game(data.game._id,data.game.creatorUsername,data.game.state,0,0,{},baralho,data.game.players);
+                console.log(this.games[data.game._id]);
                 let playerGame = {
-                    gameId: game._id,
+                    username: data.user.username,
+                    gameId: data.game._id,
                     mao: baralho.atribuirMao(),
                     pontos: 0,
                     renuncia: false,
                 };
+                console.log(playerGame.mao);
 
-                client.player.games[game._id] = playerGame;
-                client.join(game._id);
-                client.broadcast.emit('new_game', game);
-                client.broadcast.emit('palyers',  Date.now() + ': New game created by' + game.ceartorUsername );
+                client.player.games[data.game._id] = playerGame;
+                client.join(data.game._id);
+                client.broadcast.emit('new_game', data.game);
+                client.broadcast.emit('players',  Date.now() + ': New game created by' + data.game.creatorUsername );
                 
             });
 
@@ -56,6 +58,7 @@ export class WebSocketServer {
                 this.games[data.game._id].players.push(data.player);
 
                 let playerGame = {
+                    username: data.player.username,
                     gameId: data.game._id,
                     mao: baralho.atribuirMao(),
                     pontos: 0,
@@ -77,7 +80,7 @@ export class WebSocketServer {
 
             client.on('playing_game', (id) => {
                 console.log(client.player.games[id]);
-                this.io.emit('playing_game', client.player.games[id]);
+                this.io.to(id).emit('playing_game', client.player.games[id]);
             });
 
             client.emit('players', Date.now() + ': Welcome to Sueca');
