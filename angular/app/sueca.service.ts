@@ -59,6 +59,11 @@ export class SuecaService {
     	this.socket.emit('start_game', game);
     }
 
+    sendGetPlayingGame(id: any) {
+    	this.socket.emit('playing_game', id);
+    }
+
+
     getDeleteGame(): Observable<any> {
     	return this.channelListenning('delete_game');
     }
@@ -69,6 +74,10 @@ export class SuecaService {
 
     getStartGame(): Observable<any> {
     	return this.channelListenning('start_game');
+    }
+
+    getGame(): Observable<any> {
+    	return this.channelListenning('playing_game')
     }
 
     getPlayersMessages(): Observable<any> {
@@ -139,6 +148,25 @@ export class SuecaService {
 			});
 	}
 
+	getPlayingGame(id: any, user: User): Observable<Game> {
+		let options = this.buildHeaders(user);
+		let playingGame: Game;
+
+		return this.http.get('http://localhost:7777/api/v1/games', options)
+			.map(res => {
+				let response = res.json();
+				response.forEach((game: Game) =>{
+					if(game._id === id) {
+						playingGame = game;
+					}
+				});
+				return playingGame;
+			})
+			.catch(e =>{
+				console.log(e);
+				return Observable.throw(e)
+			});
+	}
 
 	joinPendingGame(user: User, game: Game): Observable<any> {
 		let options = this.buildHeaders(user);

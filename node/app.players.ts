@@ -1,5 +1,6 @@
 const mongodb = require('mongodb');
 const util = require('util');
+const sha1 = require('sha1');
 import {HandlerSettings} from './handler.settings';
 import {databaseConnection as database} from './app.database';
 
@@ -64,7 +65,17 @@ export class Player {
     }
     
     public createPlayer = (request: any, response: any, next: any) => {
-        const player = request.body;
+        var player;
+        if(request.body !== undefined) {   
+            player = {}; 
+            player.username = request.body.username,
+            player.email = request.body.email,
+            player.passwordHash = sha1(request.body.password),
+            player.avatar = '',
+            player.totalVictories = 0,
+            player.totalScore = 0
+        }
+        
         if (player === undefined) {
             response.send(400, 'No player data');
             return next();
@@ -141,7 +152,7 @@ export class Player {
         server.get(settings.prefix + 'players', settings.security.authorize, this.getPlayers);
         server.get(settings.prefix + 'players/:id', settings.security.authorize, this.getPlayer);
         server.put(settings.prefix + 'players/:id', settings.security.authorize, this.updatePlayer);
-        server.post(settings.prefix + 'register', settings.security.authorize, this.createPlayer);
+        server.post(settings.prefix + 'players', settings.security.authorize, this.createPlayer);
         server.del(settings.prefix + 'players/:id', settings.security.authorize, this.deletePlayer);
         server.post(settings.prefix + 'register', this.registerPlayer);
         console.log("Players routes registered");

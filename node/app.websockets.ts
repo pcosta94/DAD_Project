@@ -24,6 +24,10 @@ export class WebSocketServer {
         this.io.sockets.on('connection', (client: any) => {
             client.player = new Player();
             
+            client.on('delete_game', (id) => {
+                client.player.games[id] = [];
+                this.io.emit('delete_game', 'Game deleted!'); 
+            });
 
             client.on('new_game', (game) => {
 
@@ -67,11 +71,13 @@ export class WebSocketServer {
             client.on('start_game', (game) => {
                 this.games[game._id].state = game.state;
                 this.games[game._id].gameStart = Date.now();
-                this.io.to(game._id).emit('start_game', this.games[game._id]);
+                console.log(client.player.games[game._id]);
+                this.io.to(game._id).emit('start_game', game._id);
             });
 
-            client.on('delete_game', (data) => { 
-                this.io.emit('delete_game', 'Game deleted!'); 
+            client.on('playing_game', (id) => {
+                console.log(client.player.games[id]);
+                this.io.emit('playing_game', client.player.games[id]);
             });
 
             client.emit('players', Date.now() + ': Welcome to Sueca');

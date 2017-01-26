@@ -18,6 +18,10 @@ var WebSocketServer = (function () {
             _this.io = io.listen(server);
             _this.io.sockets.on('connection', function (client) {
                 client.player = new Player();
+                client.on('delete_game', function (id) {
+                    client.player.games[id] = [];
+                    _this.io.emit('delete_game', 'Game deleted!');
+                });
                 client.on('new_game', function (game) {
                     var baralho = new baralho_1.Baralho();
                     _this.games[game._id] = new game_1.Game(game._id, game.creatorUsername, game.state, 0, 0, {}, baralho, game.players);
@@ -48,10 +52,12 @@ var WebSocketServer = (function () {
                 client.on('start_game', function (game) {
                     _this.games[game._id].state = game.state;
                     _this.games[game._id].gameStart = Date.now();
-                    _this.io.to(game._id).emit('start_game', _this.games[game._id]);
+                    console.log(client.player.games[game._id]);
+                    _this.io.to(game._id).emit('start_game', game._id);
                 });
-                client.on('delete_game', function (data) {
-                    _this.io.emit('delete_game', 'Game deleted!');
+                client.on('playing_game', function (id) {
+                    console.log(client.player.games[id]);
+                    _this.io.emit('playing_game', client.player.games[id]);
                 });
                 client.emit('players', Date.now() + ': Welcome to Sueca');
                 client.broadcast.emit('players', Date.now() + ': A new player has arrived');

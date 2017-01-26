@@ -1,6 +1,7 @@
 "use strict";
 var mongodb = require('mongodb');
 var util = require('util');
+var sha1 = require('sha1');
 var app_database_1 = require("./app.database");
 var Player = (function () {
     function Player() {
@@ -58,7 +59,16 @@ var Player = (function () {
                 .catch(function (err) { return _this.handleError(err, response, next); });
         };
         this.createPlayer = function (request, response, next) {
-            var player = request.body;
+            var player;
+            if (request.body !== undefined) {
+                player = {};
+                player.username = request.body.username,
+                    player.email = request.body.email,
+                    player.passwordHash = sha1(request.body.password),
+                    player.avatar = '',
+                    player.totalVictories = 0,
+                    player.totalScore = 0;
+            }
             if (player === undefined) {
                 response.send(400, 'No player data');
                 return next();
@@ -134,7 +144,7 @@ var Player = (function () {
             server.get(settings.prefix + 'players', settings.security.authorize, _this.getPlayers);
             server.get(settings.prefix + 'players/:id', settings.security.authorize, _this.getPlayer);
             server.put(settings.prefix + 'players/:id', settings.security.authorize, _this.updatePlayer);
-            server.post(settings.prefix + 'register', settings.security.authorize, _this.createPlayer);
+            server.post(settings.prefix + 'players', settings.security.authorize, _this.createPlayer);
             server.del(settings.prefix + 'players/:id', settings.security.authorize, _this.deletePlayer);
             server.post(settings.prefix + 'register', _this.registerPlayer);
             console.log("Players routes registered");

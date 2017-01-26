@@ -27,7 +27,6 @@ export class RegisterComponent {
                 this.emailTaken = true;
             } else {
                 this.router.navigateByUrl('/login');
-                alert('User created successfully');
             }
         });
     }

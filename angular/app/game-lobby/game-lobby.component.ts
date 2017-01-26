@@ -20,7 +20,7 @@ export class GameLobbyComponent implements OnInit{
 	ngOnInit(){
 		this.refresh();
 
-		this.suecaService.getNewPendingGame().subscribe((m: any) =>{
+		this.suecaService.getNewPendingGame().subscribe((m: any) => {
 			this.refresh();
 		});
 
@@ -28,13 +28,13 @@ export class GameLobbyComponent implements OnInit{
 			this.refresh();
 		});
 
-		this.suecaService.getJoinGame().subscribe((m: any) =>{
+		this.suecaService.getJoinGame().subscribe((m: any) => {
 			this.refresh();
 		})
 
-		
-
-
+		this.suecaService.getStartGame().subscribe((m: any) => {
+			this.router.navigateByUrl('/game/'+ m);
+		});
 	}
 
 	refresh(){
@@ -44,15 +44,12 @@ export class GameLobbyComponent implements OnInit{
 				this.pendingGames.push(game);
 			})
 		})
-
-		console.log(this.pendingGames);
 	}
 
 	createNewGame(){
 		this.suecaService.createNewGame(this.authService.currentUser).subscribe((response: any) =>{
 			if(response){
 				this.suecaService.createSocketGame(response);
-				console.log(response);
 				this.pendingGames.push(response);
 			}else{
 				console.error('Não foi possivel criar o jogo');
@@ -79,7 +76,7 @@ export class GameLobbyComponent implements OnInit{
 		this.pendingGames.forEach( game => {
 			if(game.players.length == 4){
 				this.suecaService.startPendingGame(this.authService.currentUser, game).subscribe((response: any) => {
-					
+					this.suecaService.sendStartGame(game);
 				});
 			}
 		});

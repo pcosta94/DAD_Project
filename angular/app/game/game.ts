@@ -9,7 +9,7 @@ export class Game {
 		public gameStart: number,
 		public gameEnd: number,
 		public winnerTeam: {},
-		public baralho: Baralho,
+		public baralho: any,
 		public players: any[] = [],
 	){}
 }
