@@ -23,6 +23,7 @@ export class GameComponent implements OnInit {
 	public playerRound: number = 1;
 	public cardDeck: Baralho;
 	public myDeck: any[] = [];
+	
 	public round: any[] = [];
 	public isMyTurn: boolean = false;
 
@@ -43,24 +44,15 @@ export class GameComponent implements OnInit {
 		this.suecaService.getGame().subscribe((m: any) => {
 				this.playingGame.push(m);
 				this.setGameAtributes();
-				console.log(this.roundToPlay);
-			console.log(this.round);
 		});
 
 		this.suecaService.getPlayedCard().subscribe((m:any) => {
-			if(this.playerRound < 4){
+			if(this.playerRound <= 4){
 				this.playerRound = m.round++;
 				this.round.push(m.card);
-			}else {
-				this.playerRound = 1;
-				this.round = [];
 			}
 		});
 
-		
-
-		console.log(this.roundToPlay);
-		console.log(this.round);
 	}
 
 	setGameAtributes(){

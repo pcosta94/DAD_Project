@@ -13,9 +13,13 @@
 					</div>
 				</div>
 				<div class="col-md-8">
-					<ng-container *ngFor="let carta of round" >
-						<img *ngIf="carta.jogada == 'played'" [src]="carta.imagePath" class="card"/>
-					</ng-container>
+					<div class="row">
+						<div class="col-md-9 col-md-offset-3">
+							<ng-container *ngFor="let carta of round" >
+								<img *ngIf="carta.jogada == 'played'" [src]="carta.imagePath" class="round"/>
+							</ng-container>
+						</div>
+					</div>
 				</div>
 				<div class="col-md-1 image_oponent">
 					<img *ngFor="let it of [0,1,2,3,4,5,6,7,8,9]" src="cards/semFace.png" class="card_oponent" />
