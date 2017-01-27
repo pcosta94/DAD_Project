@@ -43,33 +43,24 @@ export class GameComponent implements OnInit {
 		this.suecaService.getGame().subscribe((m: any) => {
 				this.playingGame.push(m);
 				this.setGameAtributes();
+				console.log(this.roundToPlay);
+			console.log(this.round);
 		});
 
 		this.suecaService.getPlayedCard().subscribe((m:any) => {
-			this.playerRound = m.round++;
-			this.round.push(m.card);
+			if(this.playerRound < 4){
+				this.playerRound = m.round++;
+				this.round.push(m.card);
+			}else {
+				this.playerRound = 1;
+				this.round = [];
+			}
 		});
 
 		
 
-		
-		
-		//this.maoDeCartas = baralho.primeiraMao;
-		console.log(this.playingGame);
-		console.log(this.gameId);
-
-		// 	this.maos = new Maos();
-		// 	this.trunfo = this.trunfo;
-		// 	this.pMao = this.maos.primeiraMao;
-		// 	this.sMao = this.maos.segundaMao;
-		// 	this.tMao = this.maos.terceiraMao;
-		// 	this.qMao = this.maos.quartaMao;
-
-		// 	console.log(Naipe.Copas);
-		// 	this.carta = new Carta(Naipe.Copas,TipoCarta.As);
-
-		// 	this.image = this.carta.imagePath;
-		// 	console.log(this.carta);
+		console.log(this.roundToPlay);
+		console.log(this.round);
 	}
 
 	setGameAtributes(){
@@ -80,19 +71,19 @@ export class GameComponent implements OnInit {
 			this.team2.push(this.playingGame[0].players[2].username);
 			this.team2.push(this.playingGame[0].players[3].username);
 
-			if (this.playingGame[0].players[0]._id = this.authService.currentUser._id) {
+			if (this.playingGame[0].players[0]._id == this.authService.currentUser._id) {
 				this.myDeck = this.cardDeck.pMao;
 				this.roundToPlay = 1;
 			}
-			else if (this.playingGame[0].players[1]._id = this.authService.currentUser._id) {
+			if (this.playingGame[0].players[1]._id == this.authService.currentUser._id) {
 				this.myDeck = this.cardDeck.tMao;
 				this.roundToPlay = 3;
 			}
-			else if (this.playingGame[0].players[2]._id = this.authService.currentUser._id) {
+			if (this.playingGame[0].players[2]._id == this.authService.currentUser._id) {
 				this.myDeck = this.cardDeck.sMao;
 				this.roundToPlay = 2;
 			}
-			else if (this.playingGame[0].players[3]._id = this.authService.currentUser._id) {
+			if (this.playingGame[0].players[3]._id == this.authService.currentUser._id) {
 				this.myDeck = this.cardDeck.qMao;
 				this.roundToPlay = 4;
 			}
