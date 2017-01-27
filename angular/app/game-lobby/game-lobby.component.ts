@@ -12,6 +12,7 @@ import { SuecaService } from '../sueca.service';
 })
 export class GameLobbyComponent implements OnInit{
 	public pendingGames: Game[] = [];
+	public playingGames: Game[] = [];
 
 	constructor(private authService: AuthService,
 				private suecaService: SuecaService,
@@ -35,15 +36,25 @@ export class GameLobbyComponent implements OnInit{
 		this.suecaService.getStartGame().subscribe((m: any) => {
 			this.router.navigateByUrl('/game/'+ m);
 		});
+		
 	}
+
+
+
 
 	refresh(){
 		this.suecaService.getPendingGames(this.authService.currentUser).subscribe(response =>{
 			this.pendingGames = [];
 			response.forEach(game =>{
 				this.pendingGames.push(game);
-			})
-		})
+			});
+		});
+		this.suecaService.getPlayingGames(this.authService.currentUser).subscribe(response =>{
+			this.playingGames =[];
+			response.forEach(game =>{
+				this.playingGames.push(game);
+			});
+		});
 	}
 
 	createNewGame(){

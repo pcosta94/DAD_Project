@@ -28,18 +28,19 @@ var WebSocketServer = (function () {
                 client.on('delete_game', function (id) {
                     client.player.games[id] = [];
                     _this.games[id] = [];
-                    _this.games = [];
+                    _this.games.forEach(function (game) {
+                        game = {};
+                    });
                     console.log(_this.games);
                     _this.io.emit('delete_game', 'Game deleted!');
                 });
                 client.on('new_game', function (data) {
                     var baralho = new baralho_1.Baralho();
                     _this.games[data.game._id] = new game_1.Game(data.game._id, data.game.creatorUsername, data.game.state, 0, 0, {}, baralho, data.game.players);
-                    //console.log(this.games[data.game._id]);
+                    console.log(_this.games);
                     var playerGame = {
                         username: data.user.username,
                         gameId: data.game._id,
-                        mao: baralho.atribuirMao(),
                         pontos: 0,
                         renuncia: false,
                     };
@@ -55,7 +56,6 @@ var WebSocketServer = (function () {
                     var playerGame = {
                         username: data.user.username,
                         gameId: data.game._id,
-                        mao: baralho.atribuirMao(),
                         pontos: 0,
                         renuncia: false,
                     };
@@ -64,19 +64,23 @@ var WebSocketServer = (function () {
                     _this.io.emit('update_game', 'User joinned game');
                 });
                 client.on('start_game', function (game) {
-                    _this.games[game._id].state = game.state;
-                    _this.games[game._id].gameStart = Date.now();
-                    //console.log(client.player.games[game._id]);
+                    var date = new Date();
+                    var dateFormat = [date.getMonth() + 1, date.getDate(), date.getFullYear()].join('/') + ' - ' +
+                        [date.getHours(), date.getMinutes(), date.getSeconds()].join(':');
+                    _this.games[game._id].gameStart = dateFormat;
+                    _this.games[game._id].state = 'playing';
+                    //console.log(this.games[game._id]);
                     _this.io.to(game._id).emit('start_game', game._id);
                 });
                 client.on('playing_game', function (id) {
-                    console.log(client.player.games[id]);
-                    _this.io.to(id).emit('playing_game', client.player.games[id]);
+                    //console.log(this.games[id]);
+                    _this.io.to(id).emit('playing_game', _this.games[id]);
                 });
                 client.emit('players', Date.now() + ': Welcome to Sueca');
                 client.broadcast.emit('players', Date.now() + ': A new player has arrived');
                 client.on('chat', function (data) { return _this.io.emit('chat', data); });
                 client.on('chat-lobby', function (data) { return _this.io.emit('chat', data); });
+                client.on('chat-game', function (data) { return _this.io.to(data.game).emit('chat-game', data.message); });
             });
         };
         this.notifyAll = function (channel, message) {

@@ -15,6 +15,7 @@ import { GameLobbyComponent } from './game-lobby/game-lobby.component';
 import { ChatComponent } from './chat/chat.component';
 import { NotificationModule } from './notifications/notification.module';
 import { LobbyChatComponent } from './game-lobby/lobby-chat.component';
+import { GameChatComponent } from './game/game-chat.component';
 
 
  
@@ -35,7 +36,8 @@ import { LobbyChatComponent } from './game-lobby/lobby-chat.component';
     GameLobbyComponent,
     RegisterComponent,
     ChatComponent,
-    LobbyChatComponent
+    LobbyChatComponent,
+    GameChatComponent
   ],
   providers: [ 
   	AuthService,

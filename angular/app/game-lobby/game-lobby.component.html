@@ -46,12 +46,20 @@
 						<th>Creator Username</th>
 						<th>Team 1</th>
 						<th>Team 2</th>
-						<th>Joined Players</th>
 						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
-					
+					<tr *ngFor="let game of playingGames; let i = index">
+						<td>{{i+1}}</td>
+						<td>{{game.creatorUsername}}</td>
+						<td>{{game.players[0].username}} and {{game.players[1].username}} </td>
+						<td>{{game.players[2].username}} and {{game.players[3].username}}</td>
+						<td>
+							<button class="btn btn-success btn-block" type="button" [routerLink]="['/game', game._id]">Go To Game</button>
+							<button class="btn btn-danger btn-block" *ngIf="game.creatorId == authService.currentUser._id" (click)="deletePendingGame(game._id)">Delete Game</button>
+						</td>
+					</tr>
 				</tbody>
 			</table>
 		</div>

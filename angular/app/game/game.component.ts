@@ -4,6 +4,7 @@ import { SuecaService } from '../sueca.service';
 import { ActivatedRoute } from '@angular/router';
 import { Baralho } from './baralho';
 import { Game } from  './game';
+import { GameChatComponent } from './game-chat.component';
 
 
 @Component({
@@ -13,16 +14,14 @@ import { Game } from  './game';
 })
 
 export class GameComponent implements OnInit {
-	public adversarios: any[] = [];
-	public parceiro: any[] = [];
-	public maoDeCartas: any[] = [];
-	public pontosGanhos: number;
+	public myPoints: number;
 	public gameId: any;
 	public playingGame: any[] = [];
+	public team1: string[];
+	public team2: string[];
+	public myDeck: any[] = [];
 	public jogada: any[] = [];
-
-	
-
+	public isMyTurn: boolean = false;
 
 	constructor(private authService: AuthService, 
 				private suecaService: SuecaService, 
@@ -38,13 +37,12 @@ export class GameComponent implements OnInit {
 		this.suecaService.sendGetPlayingGame(this.gameId);
 
 		this.suecaService.getGame().subscribe((m: any) => {
-			if(m.username == this.authService.currentUser.username){
 				this.playingGame.push(m);
-				this.maoDeCartas = this.playingGame[0].mao;	
-			}
+
 		});
 
-
+		this.setGameAtributes(this.playingGame);
+		
 		//this.maoDeCartas = baralho.primeiraMao;
 		console.log(this.playingGame);
 		console.log(this.gameId);
@@ -61,7 +59,19 @@ export class GameComponent implements OnInit {
 
 		// 	this.image = this.carta.imagePath;
 		// 	console.log(this.carta);
-	}	
+	}
+
+	setGameAtributes(games: any){
+		console.log(games);
+		//let baralho: any = game.baralho;
+		//this.team1.push(game[0].players[0].username);
+		//this.team1.push(game[0].players[1].username);
+		//this.team2.push(game[0].players[2].username);
+		//this.team2.push(game[0].players[3].username);
+		//if(game[0].players[0]._id == this.authService.currentUser._id){
+			
+		//}
+	}
 
 	playCard(card: any){
 		

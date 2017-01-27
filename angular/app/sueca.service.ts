@@ -55,6 +55,10 @@ export class SuecaService {
         this.socket.emit('chat-lobby', [JSON.parse(sessionStorage.getItem('player')).username] +': '+ message);
     }
 
+    sendGameChatMessage(message: any, game: any) {
+        this.socket.emit('chat-game', {message, game});
+    }
+
     sendDeleteGame(message: any) {
     	this.socket.emit('delete_game', message);
     }
@@ -94,6 +98,10 @@ export class SuecaService {
 
     getChatLobbyMessages(): Observable<any> {
     	return this.channelListenning('chat-lobby');
+    }
+
+    getChatGameMessages(): Observable<any> {
+    	return this.channelListenning('chat-game');
     }
 
 
@@ -152,23 +160,27 @@ export class SuecaService {
 			});
 	}
 
-	getPlayingGame(id: any, user: User): Observable<Game> {
+	getPlayingGames(user: User): Observable<Game[]> {
 		let options = this.buildHeaders(user);
-		let playingGame: Game;
+		let playingGame: Game[] = [];
 
 		return this.http.get('http://localhost:7777/api/v1/games', options)
 			.map(res => {
 				let response = res.json();
 				response.forEach((game: Game) =>{
-					if(game._id === id) {
-						playingGame = game;
+					if(game.state === 'playing') {
+						game.players.forEach((palyer: User) => {
+							if(palyer._id === user._id){
+								playingGame.push(game);
+							}
+						});
 					}
 				});
 				return playingGame;
 			})
 			.catch(e =>{
 				console.log(e);
-				return Observable.throw(e)
+				return Observable.throw(e);
 			});
 	}
 
