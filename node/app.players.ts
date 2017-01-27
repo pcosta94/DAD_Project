@@ -141,7 +141,7 @@ export class Player {
         server.get(settings.prefix + 'players', settings.security.authorize, this.getPlayers);
         server.get(settings.prefix + 'players/:id', settings.security.authorize, this.getPlayer);
         server.put(settings.prefix + 'players/:id', settings.security.authorize, this.updatePlayer);
-        server.post(settings.prefix + 'register', settings.security.authorize, this.createPlayer);
+        server.post(settings.prefix + 'register', this.createPlayer);
         server.del(settings.prefix + 'players/:id', settings.security.authorize, this.deletePlayer);
         console.log("Players routes registered");
     };

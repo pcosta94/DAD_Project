@@ -131,7 +131,7 @@ var Player = (function () {
             server.get(settings.prefix + 'players', settings.security.authorize, _this.getPlayers);
             server.get(settings.prefix + 'players/:id', settings.security.authorize, _this.getPlayer);
             server.put(settings.prefix + 'players/:id', settings.security.authorize, _this.updatePlayer);
-            server.post(settings.prefix + 'register', settings.security.authorize, _this.createPlayer);
+            server.post(settings.prefix + 'register', _this.createPlayer);
             server.del(settings.prefix + 'players/:id', settings.security.authorize, _this.deletePlayer);
             console.log("Players routes registered");
         };
