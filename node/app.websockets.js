@@ -41,6 +41,7 @@ var WebSocketServer = (function () {
                     var playerGame = {
                         username: data.user.username,
                         gameId: data.game._id,
+                        round: 0,
                         pontos: 0,
                         renuncia: false,
                     };
@@ -56,6 +57,7 @@ var WebSocketServer = (function () {
                     var playerGame = {
                         username: data.user.username,
                         gameId: data.game._id,
+                        round: 0,
                         pontos: 0,
                         renuncia: false,
                     };
@@ -75,6 +77,9 @@ var WebSocketServer = (function () {
                 client.on('playing_game', function (id) {
                     //console.log(this.games[id]);
                     _this.io.to(id).emit('playing_game', _this.games[id]);
+                });
+                client.on('play_card', function (data) {
+                    _this.io.to(data.game).emit('play_card', data);
                 });
                 client.emit('players', Date.now() + ': Welcome to Sueca');
                 client.broadcast.emit('players', Date.now() + ': A new player has arrived');

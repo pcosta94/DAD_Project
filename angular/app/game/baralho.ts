@@ -11,7 +11,7 @@ export class Baralho {
 	public sMao: Carta[];
 	public tMao: Carta[];
 	public qMao: Carta[];
-	public maosDistribuidas: number = 0;
+	//public maosDistribuidas: number = 0;
 
 	public constructor(){
 		this.baralho = this.adicionarCartas();
@@ -64,5 +64,24 @@ export class Baralho {
 		this.tMao = cartas.slice(20,30);
 		this.qMao = cartas.slice(30,40); 
 	}
+
+	// public atribuirMao(): Carta[]{
+	// 	if(this.maosDistribuidas == 0){
+	// 		this.maosDistribuidas++;
+	// 		return this.pMao;
+	// 	}
+	// 	if(this.maosDistribuidas == 2){
+	// 		this.maosDistribuidas++;
+	// 		return this.sMao;
+	// 	}
+	// 	if(this.maosDistribuidas == 1){
+	// 		this.maosDistribuidas++;
+	// 		return this.tMao;
+	// 	}
+	// 	if(this.maosDistribuidas == 3){
+	// 		this.maosDistribuidas++;
+	// 		return this.qMao;
+	// 	}
+	// }
 
 }

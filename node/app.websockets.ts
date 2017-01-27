@@ -52,6 +52,7 @@ export class WebSocketServer {
                 let playerGame = {
                     username: data.user.username,
                     gameId: data.game._id,
+                    round: 0,
                     pontos: 0,
                     renuncia: false,
                 };
@@ -72,6 +73,7 @@ export class WebSocketServer {
                 let playerGame = {
                     username: data.user.username,
                     gameId: data.game._id,
+                    round: 0,
                     pontos: 0,
                     renuncia: false,
                 }
@@ -96,6 +98,10 @@ export class WebSocketServer {
             client.on('playing_game', (id) => {
                 //console.log(this.games[id]);
                 this.io.to(id).emit('playing_game', this.games[id]);
+            });
+
+            client.on('play_card', (data) => {
+                this.io.to(data.game).emit('play_card',data);
             });
 
             client.emit('players', Date.now() + ': Welcome to Sueca');

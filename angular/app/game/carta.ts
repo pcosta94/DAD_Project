@@ -7,6 +7,7 @@ export class Carta {
 	public naipe: Naipe;
 	public pontos: number;
 	public imagePath: string;
+	public jodada: string;
 	
 
 	public constructor(naipe: any, tipo: any){
@@ -14,6 +15,7 @@ export class Carta {
 		this.tipo = tipo;
 		this.pontos = this.atribuirPontos(this.tipo);
 		this.imagePath = this.atribuirImagem(this.naipe,this.tipo);
+		this.jodada = '';
 
 	}
 

@@ -35,12 +35,8 @@ export class SuecaService {
 	    this.socket.emit('login', message);
 	} 
 
-	createSocketGame(game: any, user: any) {
+	sendNewPendingGame(game: any, user: any) {
 		this.socket.emit('new_game', {game, user});
-	}
-
-	getNewPendingGame() {
-		return this.channelListenning('new_game');
 	}
 
 	sendJoinGame(game: Game, user: any) {
@@ -71,6 +67,13 @@ export class SuecaService {
     	this.socket.emit('playing_game', id);
     }
 
+    sendPlayCard(card: any, game: any, round: any) {
+    	this.socket.emit('play_card', {card, game, round});
+    }
+
+    getNewPendingGame() {
+		return this.channelListenning('new_game');
+	}
 
     getDeleteGame(): Observable<any> {
     	return this.channelListenning('delete_game');
@@ -102,6 +105,10 @@ export class SuecaService {
 
     getChatGameMessages(): Observable<any> {
     	return this.channelListenning('chat-game');
+    }
+
+    getPlayedCard(): Observable<any> {
+    	return this.channelListenning('play_card');
     }
 
 

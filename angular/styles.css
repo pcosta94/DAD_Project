@@ -24,7 +24,7 @@ img {
 .card{
 	height: 90px;
    	width: 40px;
-   	margin-left: -78px;
+   	margin-left: -83px;
 }
 
 .card_team {
@@ -40,8 +40,8 @@ img {
   margin-top: -90px;
 }
 
-.card_image {
-	
+.card_table {
+	background-color: #006400;
 	/*
 	display: inline-flex;
 	margin-left: -102px;
