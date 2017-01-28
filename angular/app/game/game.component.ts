@@ -20,10 +20,12 @@ export class GameComponent implements OnInit {
 	public team1: string[] = [];
 	public team2: string[] = [];
 	public roundToPlay: number;
-	public playerRound: number = 1;
+	
 	public cardDeck: Baralho;
 	public myDeck: any[] = [];
-	
+	public playCounter: number = 0;
+	public play: any[] = [];
+	public roundCounter: number = 0;
 	public round: any[] = [];
 	public isMyTurn: boolean = false;
 
@@ -42,61 +44,41 @@ export class GameComponent implements OnInit {
 		});
 		
 		this.suecaService.getGame().subscribe((m: any) => {
-				this.playingGame.push(m);
-				this.setGameAtributes();
+				//console.log(m);
+				this.setGameAtributes(m);
 		});
 
 		this.suecaService.getPlayedCard().subscribe((m:any) => {
-			if(this.playerRound <= 4){
-				this.playerRound = m.round++;
+			if(this.playCounter < 4){
+				this.playCounter = m.round++;
 				this.round.push(m.card);
 			}
 		});
 
+	
 	}
 
-	setGameAtributes(){
-		if(this.playingGame.length == 1){
-			this.cardDeck = this.playingGame[0].baralho;
-			this.team1.push(this.playingGame[0].players[0].username);
-			this.team1.push(this.playingGame[0].players[1].username);
-			this.team2.push(this.playingGame[0].players[2].username);
-			this.team2.push(this.playingGame[0].players[3].username);
-
-			if (this.playingGame[0].players[0]._id == this.authService.currentUser._id) {
-				this.myDeck = this.cardDeck.pMao;
-				this.roundToPlay = 1;
-			}
-			if (this.playingGame[0].players[1]._id == this.authService.currentUser._id) {
-				this.myDeck = this.cardDeck.tMao;
-				this.roundToPlay = 3;
-			}
-			if (this.playingGame[0].players[2]._id == this.authService.currentUser._id) {
-				this.myDeck = this.cardDeck.sMao;
-				this.roundToPlay = 2;
-			}
-			if (this.playingGame[0].players[3]._id == this.authService.currentUser._id) {
-				this.myDeck = this.cardDeck.qMao;
-				this.roundToPlay = 4;
+	setGameAtributes(game: any){
+		console.log(game);
+		console.log(this.playingGame);
+		if(this.playingGame == []){
+			if(game.playerId == this.authService.currentUser._id){
+				console.log(game);
+				this.playingGame.push(game);
 			}
 		}
 	}
 
-	isMyRound() {
-		if(this.playerRound == this.roundToPlay){
+	isMyPlay() {
+		if(this.playCounter == this.roundToPlay){
 			return true;
 		}
 		return false;
 	}
 
 	playCard(card: any){
-		if(this.isMyRound()){
-			this.myDeck.forEach( c => {
-				if(c == card){
-					c.jogada = 'played';
-				}
-			})
-			this.suecaService.sendPlayCard(card,this.gameId,this.playerRound);
+		if(this.isMyPlay()){
+			this.suecaService.sendPlayCard(card,this.gameId);
 		}
 	}
 	

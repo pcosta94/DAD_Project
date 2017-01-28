@@ -63,12 +63,12 @@ export class SuecaService {
     	this.socket.emit('start_game', game);
     }
 
-    sendGetPlayingGame(id: any) {
-    	this.socket.emit('playing_game', id);
+    sendGetPlayingGame(game: any) {
+    	this.socket.emit('playing_game', game);
     }
 
-    sendPlayCard(card: any, game: any, round: any) {
-    	this.socket.emit('play_card', {card, game, round});
+    sendPlayCard(card: any, game: any) {
+    	this.socket.emit('play_card', {card, game});
     }
 
     getNewPendingGame() {
@@ -122,9 +122,10 @@ export class SuecaService {
 
 	createNewGame(user: User): Observable<string> {
 		let options = this.buildHeaders(user);
+		let newBaralho: Baralho = new Baralho();
 
 		return this.http.post('http://localhost:7777/api/v1/games', 
-			{creatorId: user._id, creatorUsername: user.username , state: 'pending', players: [user]} , options)
+			{creatorId: user._id, creatorUsername: user.username , state: 'pending',baralho: newBaralho, players: [user]} , options)
 			.map(response => {
 				return response.json();
 			})
