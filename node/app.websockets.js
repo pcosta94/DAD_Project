@@ -9,12 +9,13 @@ var Player = (function () {
 }());
 exports.Player = Player;
 var Game = (function () {
-    function Game(player_id, game_id, playerHand, playOrder) {
+    function Game(player_id, game_id, playerHand, playerTurn, team) {
         this.points = 0;
         this.playerId = player_id;
         this.gameId = game_id;
         this.playerHand = playerHand;
-        this.playOrder = playOrder;
+        this.playerTurn = playerTurn;
+        this.team = team;
     }
     return Game;
 }());
@@ -41,26 +42,31 @@ var WebSocketServer = (function () {
                 client.on('new_game', function (data) {
                     var gameDeck = data.game.baralho;
                     var hand = [];
-                    var order;
+                    var turn;
+                    var team;
                     switch (data.user._id) {
                         case data.game.players[0]._id:
                             hand = gameDeck.pMao;
-                            order = 1;
+                            turn = 1;
+                            team = 1;
                             break;
                         case data.game.players[1]._id:
                             hand = gameDeck.tMao;
-                            order = 3;
+                            turn = 3;
+                            team = 1;
                             break;
                         case data.game.players[2]._id:
                             hand = gameDeck.sMao;
-                            order = 2;
+                            turn = 2;
+                            team = 2;
                             break;
                         case data.game.players[3]._id:
                             hand = gameDeck.qMao;
-                            order = 4;
+                            turn = 4;
+                            team = 2;
                             break;
                     }
-                    var playerGame = new Game(data.user._id, data.game._id, hand, order);
+                    var playerGame = new Game(data.user._id, data.game._id, hand, turn, team);
                     client.player.games.push(playerGame);
                     client.join(data.game._id);
                     client.broadcast.emit('new_game', data.game);
@@ -69,28 +75,32 @@ var WebSocketServer = (function () {
                 client.on('join_game', function (data) {
                     var gameDeck = data.game.baralho;
                     var hand = [];
-                    var order;
+                    var turn;
+                    var team;
                     switch (data.user._id) {
                         case data.game.players[0]._id:
                             hand = gameDeck.pMao;
-                            order = 1;
+                            turn = 1;
+                            team = 1;
                             break;
                         case data.game.players[1]._id:
                             hand = gameDeck.tMao;
-                            order = 3;
+                            turn = 3;
+                            team = 1;
                             break;
                         case data.game.players[2]._id:
                             hand = gameDeck.sMao;
-                            order = 2;
+                            turn = 2;
+                            team = 2;
                             break;
                         case data.game.players[3]._id:
                             hand = gameDeck.qMao;
-                            order = 4;
+                            turn = 4;
+                            team = 2;
                             break;
                     }
-                    var playerGame = new Game(data.user._id, data.game._id, hand, order);
+                    var playerGame = new Game(data.user._id, data.game._id, hand, turn, team);
                     client.player.games.push(playerGame);
-                    //console.log(client.player.games[data.game._id]);
                     client.join(data.game._id);
                     _this.io.emit('update_game', 'User joinned game');
                 });

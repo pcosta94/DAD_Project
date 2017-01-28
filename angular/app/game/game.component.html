@@ -27,7 +27,7 @@
 			</div>
 			<div class="row">
 				<div class="col-md-1 col-md-offset-10">
-					<ng-container *ngFor="let carta of myDeck" >
+					<ng-container *ngFor="let carta of myHand" >
 						<img *ngIf="carta.jogada != 'played'" [src]="carta.imagePath" class="card" (click)="playCard(carta)"/>
 					</ng-container>
 				</div>

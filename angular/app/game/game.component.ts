@@ -16,14 +16,14 @@ import { GameChatComponent } from './game-chat.component';
 export class GameComponent implements OnInit {
 	public myPoints: number;
 	public gameId: any;
-	public playingGame: any[] = [];
-	public team1: string[] = [];
-	public team2: string[] = [];
-	public roundToPlay: number;
+	public playingGame: any;
+	public teamMateHand: any[] = [];
+	public adversariesHand: any[] = [];
+	public turnToPlay: number;
 	
 	public cardDeck: Baralho;
-	public myDeck: any[] = [];
-	public playCounter: number = 0;
+	public myHand: any[] = [];
+	public playTurnCounter: number = 1;
 	public play: any[] = [];
 	public roundCounter: number = 0;
 	public round: any[] = [];
@@ -44,40 +44,35 @@ export class GameComponent implements OnInit {
 		});
 		
 		this.suecaService.getGame().subscribe((m: any) => {
-				//console.log(m);
+				console.log(m);
 				this.setGameAtributes(m);
 		});
 
 		this.suecaService.getPlayedCard().subscribe((m:any) => {
-			if(this.playCounter < 4){
-				this.playCounter = m.round++;
-				this.round.push(m.card);
-			}
+			
 		});
 
+		console.log(this.myHand);
 	
 	}
 
 	setGameAtributes(game: any){
-		console.log(game);
-		console.log(this.playingGame);
-		if(this.playingGame == []){
-			if(game.playerId == this.authService.currentUser._id){
-				console.log(game);
-				this.playingGame.push(game);
-			}
+		if(game.playerId == this.authService.currentUser._id){
+			this.myHand = game.playerHand;
+			this.turnToPlay = game.playerTurn;
 		}
+
 	}
 
-	isMyPlay() {
-		if(this.playCounter == this.roundToPlay){
+	isMyTurnToPlay() {
+		if(this.playTurnCounter == this.turnToPlay){
 			return true;
 		}
 		return false;
 	}
 
 	playCard(card: any){
-		if(this.isMyPlay()){
+		if(this.isMyTurnToPlay()){
 			this.suecaService.sendPlayCard(card,this.gameId);
 		}
 	}

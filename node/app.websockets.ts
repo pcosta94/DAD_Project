@@ -12,17 +12,18 @@ export class Player {
 export class Game{
     public playerId: string;
     public gameId: string;
-    //public gameDeck: Baralho;
     public playerHand: any[];
-    public playOrder: number;
+    public playerTurn: number;
+    public team: number;
     public points: number = 0;
     public renuncia: false;
     
-    constructor(player_id: string, game_id: string, playerHand: any[], playOrder: number){
+    constructor(player_id: string, game_id: string, playerHand: any[], playerTurn: number, team: number){
         this.playerId = player_id;
         this.gameId = game_id;
         this.playerHand = playerHand;
-        this.playOrder = playOrder;
+        this.playerTurn = playerTurn;
+        this.team = team;
     }
 }
 
@@ -59,29 +60,34 @@ export class WebSocketServer {
                 let gameDeck: Baralho = data.game.baralho;
 
                 let hand: any[] = [];
-                let order: any;
+                let turn: any;
+                let team: any;
 
                 switch (data.user._id) {
                     case data.game.players[0]._id:
                         hand = gameDeck.pMao;
-                        order = 1;
+                        turn = 1;
+                        team = 1;
                         break;
                     case data.game.players[1]._id:
                         hand = gameDeck.tMao;
-                        order = 3;
+                        turn = 3;
+                        team = 1;
                         break;
                     case data.game.players[2]._id:
                         hand = gameDeck.sMao;
-                        order = 2;
+                        turn = 2;
+                        team = 2;
                         break;
                     case data.game.players[3]._id:
                         hand = gameDeck.qMao;
-                        order = 4;
+                        turn = 4;
+                        team = 2;
                         break;
                 }
                        
                    
-                let playerGame = new Game(data.user._id, data.game._id, hand, order);
+                let playerGame = new Game(data.user._id, data.game._id, hand, turn, team);
                 client.player.games.push(playerGame);
 
                 client.join(data.game._id);
@@ -92,36 +98,39 @@ export class WebSocketServer {
 
             client.on('join_game', (data) => {
 
-                let gameDeck: Baralho = data.game.baralho;
+                 let gameDeck: Baralho = data.game.baralho;
 
                 let hand: any[] = [];
-                let order: any;
+                let turn: any;
+                let team: any;
 
                 switch (data.user._id) {
                     case data.game.players[0]._id:
                         hand = gameDeck.pMao;
-                        order = 1;
+                        turn = 1;
+                        team = 1;
                         break;
                     case data.game.players[1]._id:
                         hand = gameDeck.tMao;
-                        order = 3;
+                        turn = 3;
+                        team = 1;
                         break;
                     case data.game.players[2]._id:
                         hand = gameDeck.sMao;
-                        order = 2;
+                        turn = 2;
+                        team = 2;
                         break;
                     case data.game.players[3]._id:
                         hand = gameDeck.qMao;
-                        order = 4;
+                        turn = 4;
+                        team = 2;
                         break;
                 }
-                     
-
-                let playerGame = new Game(data.user._id, data.game._id, hand, order);
-
+                       
+                   
+                let playerGame = new Game(data.user._id, data.game._id, hand, turn, team);
                 client.player.games.push(playerGame);
-
-                //console.log(client.player.games[data.game._id]);
+                
                 client.join(data.game._id);
                 this.io.emit('update_game', 'User joinned game');
 

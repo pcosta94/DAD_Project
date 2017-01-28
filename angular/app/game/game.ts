@@ -1,6 +1,3 @@
-import  { Baralho } from './baralho';
-import  { User } from '../user';
-
 export class Game {
 	constructor(
 		public _id: string,
