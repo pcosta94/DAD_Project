@@ -14,14 +14,15 @@ export class AuthService {
 
     constructor(private http: Http) { }
 
-    register(username: string, email: string, password: string): Observable<string> {
-        return this.http.post('http://localhost:7777/api/v1/register', { username: username, email: email, password: password})
+    register(username: string, email: string, password: string, avatar: string): Observable<string> {
+        return this.http.post('http://localhost:7777/api/v1/register', { username: username, email: email, password: password, avatar:avatar})
             .map(res => { return res.json(); })
             .catch(e => {
                 console.log(e);
                 return Observable.throw(e);
             });
     }
+
 
     logIn(username: string, password: string): Observable<User> {
         return this.http.post('http://localhost:7777/api/v1/login', { username: username, password: password })

@@ -4,6 +4,7 @@ import { SuecaService } from '../sueca.service';
 import { ActivatedRoute } from '@angular/router';
 import { Baralho } from './baralho';
 import { Game } from  './game';
+import { Naipe } from './naipe';
 import { GameChatComponent } from './game-chat.component';
 
 
@@ -14,17 +15,22 @@ import { GameChatComponent } from './game-chat.component';
 })
 
 export class GameComponent implements OnInit {
-	public myPoints: number;
+	public myPoints: number = 0;
 	public gameId: any;
 	public playingGame: any;
 	public teamMateHand: any[] = [];
 	public adversariesHand: any[] = [];
 	public turnToPlay: number;
-	
+	public playerNumber: number;
+	public team1: any[] = [];
+	public team2: any[] = [];
+	public trunfo: Naipe;
+
 	public cardDeck: Baralho;
 	public myHand: any[] = [];
+	public playedCards: any[] = [];
 	public playTurnCounter: number = 1;
-	public play: any[] = [];
+	public plays: any[] = [];
 	public roundCounter: number = 0;
 	public round: any[] = [];
 	public isMyTurn: boolean = false;
@@ -44,36 +50,53 @@ export class GameComponent implements OnInit {
 		});
 		
 		this.suecaService.getGame().subscribe((m: any) => {
-				console.log(m);
-				this.setGameAtributes(m);
+				if(m.playerId == this.authService.currentUser._id){
+					this.playerNumber = m.playerNumber;
+					this.turnToPlay = m.playerTurn ;
+					this.myHand = m.playerHand;
+					this.trunfo = m.trunfo
+				}
+
+				//this.setGameAtributes(m);
 		});
 
 		this.suecaService.getPlayedCard().subscribe((m:any) => {
-			
+			if(this.playTurnCounter == this.turnToPlay){
+				this.myHand = m.hand;
+				console.log(m);
+			}
+			if(this.playTurnCounter <=4 ){
+				this.playTurnCounter++;
+				this.playedCards.push(m.playedCard);
+				this.plays.push(m.play);
+				if(this.playTurnCounter == 5 ){
+					this.round[this.roundCounter] = this.plays;
+					this.roundCounter ++;
+					this.playTurnCounter = 1;
+					this.suecaService.sendPlayedRound(this.plays,this.trunfo);
+				}
+
+				
+			}
 		});
 
-		console.log(this.myHand);
+		this.suecaService.getPlayedRound().subscribe((m:any) => {
+			console.log(m);
+			
+
+		});
+
 	
 	}
 
-	setGameAtributes(game: any){
-		if(game.playerId == this.authService.currentUser._id){
-			this.myHand = game.playerHand;
-			this.turnToPlay = game.playerTurn;
-		}
-
-	}
-
-	isMyTurnToPlay() {
-		if(this.playTurnCounter == this.turnToPlay){
-			return true;
-		}
-		return false;
-	}
-
 	playCard(card: any){
-		if(this.isMyTurnToPlay()){
-			this.suecaService.sendPlayCard(card,this.gameId);
+		if(this.playTurnCounter == this.turnToPlay){
+			let play = {
+				gameId: this.gameId,
+				playerId: this.authService.currentUser._id,
+				playedCard: card
+			}
+			this.suecaService.sendPlayCard(play,this.gameId);
 		}
 	}
 	

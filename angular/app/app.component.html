@@ -16,12 +16,12 @@
 		        	<a routerLink="/home">Home</a>
 		        </li>
 		        <li routerLinkActive="active">
-		        	<a routerLink="/lobby">Games List</a>
+		        	<a routerLink="/lobby" *ngIf="auth.isLoggedIn()">Games List</a>
 		        </li>
 		    </ul>
 	        <ul class="nav navbar-nav navbar-right">
 	        	<li *ngIf="!auth.isLoggedIn()" routerLinkActive="active"><a routerLink="/login">Sign In</a></li>
-	            <li *ngIf="auth.isLoggedIn()" routerLinkActive="active"><a>Welcome {{this.auth.currentUser.username}}</a></li>
+	            <li *ngIf="auth.isLoggedIn()" routerLinkActive="active"><a>Welcome <img height="32" width="32" [src]="this.auth.currentUser.avatar" class="circle"> {{this.auth.currentUser.username}}</a></li>
 	            <li *ngIf="auth.isLoggedIn()" routerLinkActive="active"><a routerLink="/home" (click)="logout()">Sign Out</a></li>
 	            <li *ngIf="!auth.isLoggedIn()" routerLinkActive="active"><a routerLink="/register">Register</a></li>
 	        </ul>

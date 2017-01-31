@@ -71,7 +71,7 @@ export class Player {
             player.username = request.body.username,
             player.email = request.body.email,
             player.passwordHash = sha1(request.body.password),
-            player.avatar = '',
+            player.avatar = request.body.avatar,
             player.totalVictories = 0,
             player.totalScore = 0
         }
@@ -119,6 +119,32 @@ export class Player {
             .catch(err => this.handleError(err, response, next));
     }
 
+    public getTop10ByVictories = (request: any, response: any, next: any) => {
+        database.db.collection('players')
+            .find()
+            .sort({ totalVictories: -1 })
+            .limit(10)
+            .toArray()
+            .then(players => {
+                response.json(players || []);
+                next();
+            })
+            .catch(err => this.handleError(err, response, next));
+    }
+    
+    public getTop10ByScore = (request: any, response: any, next: any) => {
+        database.db.collection('players')
+            .find()
+            .sort({ totalScore: -1 })
+            .limit(10)
+            .toArray()
+            .then(players => {
+                response.json(players || []);
+                next();
+            })
+            .catch(err => this.handleError(err, response, next));
+    }
+
     public registerPlayer = (request: any, response: any, next: any) => {
         database.db.collection('players')
             .findOne({ username: request.body.username })
@@ -145,10 +171,13 @@ export class Player {
             .catch(err => this.handleError(err, response, next));
     }
 
+
+
     // Routes for the games
     public init = (server: any, settings: HandlerSettings) => {
         this.settings = settings;
-        server.get(settings.prefix + 'top10', this.getTop10);
+        server.get(settings.prefix + 'top10ByVictories', this.getTop10ByVictories);
+        server.get(settings.prefix +  'top10ByScore', this.getTop10ByScore);
         server.get(settings.prefix + 'players', settings.security.authorize, this.getPlayers);
         server.get(settings.prefix + 'players/:id', settings.security.authorize, this.getPlayer);
         server.put(settings.prefix + 'players/:id', settings.security.authorize, this.updatePlayer);

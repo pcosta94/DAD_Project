@@ -67,8 +67,12 @@ export class SuecaService {
     	this.socket.emit('playing_game', game);
     }
 
-    sendPlayCard(card: any, game: any) {
-    	this.socket.emit('play_card', {card, game});
+    sendPlayCard(play: any, game: any) {
+    	this.socket.emit('play_card', {play, game});
+    }
+
+    sendPlayedRound(plays: any, trunfo: any){
+    	this.socket.emit('played_round', {plays, trunfo});
     }
 
     getNewPendingGame() {
@@ -80,7 +84,7 @@ export class SuecaService {
     }
 
     getJoinGame(): Observable<any> {
-    	return this.channelListenning('update_game');
+    	return this.channelListenning('join_game');
     }
 
     getStartGame(): Observable<any> {
@@ -111,7 +115,9 @@ export class SuecaService {
     	return this.channelListenning('play_card');
     }
 
-
+    getPlayedRound(): Observable<any> {
+    	return this.channelListenning('played_round');
+    }
 
 	private buildHeaders(user: User): RequestOptions {
 		let headers = new Headers();

@@ -7,12 +7,12 @@
        and a popular variant of the Bisca card game. The game is played in Portugal, Brazil and Angola and other 
        Portuguese communities. Its closest relative is the very similar German game Einwerfen.
       </p>
-      <div *ngIf="auth.isLoggedIn()">
-        <notification-panel></notification-panel>
-        <chat></chat>
+      <div>
+        <top10></top10>
       </div>
-      
-      <!-- <top10-control> </top10-control> -->
+      <div *ngIf="auth.isLoggedIn()">
+        <chat-global></chat-global>
+      </div>
     </div>
     <footer class="footer">
         <div class="container">

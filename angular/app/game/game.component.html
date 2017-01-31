@@ -15,8 +15,8 @@
 				<div class="col-md-8">
 					<div class="row">
 						<div class="col-md-9 col-md-offset-3">
-							<ng-container *ngFor="let carta of round" >
-								<img *ngIf="carta.jogada == 'played'" [src]="carta.imagePath" class="round"/>
+							<ng-container *ngFor="let card of playedCards" >
+								<img  [src]="card.imagePath" class="round"/>
 							</ng-container>
 						</div>
 					</div>
@@ -37,9 +37,12 @@
 			<div class="panel panel-default">
 				<div class="panel-heading" style="text-align: center">Game Status</div>
 				<div class="panel-body">
-					Team 1:<div *ngFor="let user of team1"> {{user}}</div>
-					Team 2:<div *ngFor="let user of team2"> {{user}}</div>
-					Points:<p>{{myPoints}}</p>
+					<p *ngIf="playTurnCounter == turnToPlay"> It's your turn </p>
+					<p *ngIf="playTurnCounter != turnToPlay"> Not your turn </p> 
+					Team 1:<label *ngFor="let player of team1"> {{player}}</label>
+					Team 2:<label *ngFor="let player of team2"> {{player}}</label>
+					Points: {{myPoints}}
+					Trunfo: {{trunfo}}
 				</div>
 			</div>
 			<div class="panel panel-default">

@@ -20,7 +20,7 @@ export class RegisterComponent {
     constructor(private authService: AuthService, private router: Router) {}
 
     onSubmit() {
-        this.authService.register(this.model.username, this.model.email, this.model.password).subscribe(r => {
+        this.authService.register(this.model.username, this.model.email, this.model.password, this.model.avatar).subscribe(r => {
             if (r['msg'] === 'Username already exists') {
                 this.usernameTaken = true;
             } else if (r['msg'] === 'Email already in use') {

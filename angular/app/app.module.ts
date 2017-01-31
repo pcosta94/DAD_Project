@@ -12,10 +12,11 @@ import { GameComponent } from './game/game.component';
 import { SuecaService } from './sueca.service';
 import { HomeComponent } from './home/home.component';
 import { GameLobbyComponent } from './game-lobby/game-lobby.component';
-import { ChatComponent } from './chat/chat.component';
-import { NotificationModule } from './notifications/notification.module';
-import { LobbyChatComponent } from './game-lobby/lobby-chat.component';
+import { ChatGlobalComponent } from './chat/chat-global.component';
 import { GameChatComponent } from './game/game-chat.component';
+import { Top10Component } from './top10/top10.component';
+import { Top10Service } from './top10/top10.service';
+
 
 
  
@@ -25,8 +26,7 @@ import { GameChatComponent } from './game/game-chat.component';
   	BrowserModule,
   	HttpModule, 
   	FormsModule,
-    RoutingModule,
-    NotificationModule
+    RoutingModule
   ],
   declarations: [ 
   	AppComponent,
@@ -35,13 +35,14 @@ import { GameChatComponent } from './game/game-chat.component';
     HomeComponent,
     GameLobbyComponent,
     RegisterComponent,
-    ChatComponent,
-    LobbyChatComponent,
-    GameChatComponent
+    GameChatComponent,
+    Top10Component,
+    ChatGlobalComponent
   ],
   providers: [ 
   	AuthService,
     SuecaService,
+    Top10Service,
     UserLoggedGuard
   ],
   bootstrap: [ AppComponent ]

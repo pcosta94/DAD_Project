@@ -9,9 +9,14 @@ import {AuthService } from './auth.service'
 export class AppComponent  { 
 	constructor(private auth: AuthService)
     {
-    	if(sessionStorage != null){
-        	auth.currentUser = JSON.parse(sessionStorage.getItem('player'));
-	    }
+    	if(sessionStorage.length != 0){
+          
+          auth.currentUser = JSON.parse(sessionStorage.getItem('player'));
+          if(auth.currentUser.avatar == "")
+           {
+             auth.currentUser.avatar = "https://upload.wikimedia.org/wikipedia/en/b/b1/Portrait_placeholder.png";
+           }
+      }
     }
 
     logout(): void {
