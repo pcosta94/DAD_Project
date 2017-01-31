@@ -1,5 +1,6 @@
 const mongodb = require('mongodb');
 const util = require('util');
+const sha1 = require('sha1');
 import {HandlerSettings} from './handler.settings';
 import {databaseConnection as database} from './app.database';
 
@@ -64,7 +65,17 @@ export class Player {
     }
 
     public createPlayer = (request: any, response: any, next: any) => {
-        const player = request.body;
+        var player;
+        if(request.body !== undefined) {
+            player = {};
+            player.username = request.body.username,
+            player.email = request.body.email,
+            player.passwordHash = sha1(request.body.password),
+            player.avatar = request.body.avatar,
+            player.totalVictories = 0,
+            player.totalScore = 0
+        }
+
         if (player === undefined) {
             response.send(400, 'No player data');
             return next();
@@ -73,7 +84,7 @@ export class Player {
             .insertOne(player)
             .then(result => this.returnPlayer(result.insertedId, response, next))
             .catch(err => this.handleError(err, response, next));
-    }
+}
 
     public deletePlayer = (request: any, response: any, next: any) => {
         var id = new mongodb.ObjectID(request.params.id);

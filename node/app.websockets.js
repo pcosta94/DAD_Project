@@ -26,7 +26,7 @@ var WebSocketServer = (function () {
                     client.join(game._id);
                     client.broadcast.emit('new_game', game);
                     console.log(game._id);
-                    client.broadcast.emit('palyers', Date.now() + ': New game created by' + game.ceartorUsername);
+                    client.broadcast.emit('players', Date.now() + ': New game created by' + game.ceartorUsername);
                 });
                 client.emit('players', Date.now() + ': Welcome to Sueca');
                 client.broadcast.emit('players', Date.now() + ': A new player has arrived');

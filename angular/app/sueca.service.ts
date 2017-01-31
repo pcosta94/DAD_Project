@@ -75,7 +75,7 @@ export class SuecaService {
 	createNewGame(user: User, baralho: Baralho): Observable<string> {
 		let options = this.buildHeaders(user);
 
-		return this.http.post('http://localhost:7777/api/v1/games', 
+		return this.http.post('http://localhost:7777/api/v1/games',
 			{creatorId: user._id, creatorUsername: user.username , state: 'pending', baralho: {baralho}, players: [{ player: user, points: 0 }]}, options)
 			.map(response => {
 				return response.json();

@@ -16,14 +16,14 @@ export class Player {
 export class WebSocketServer {
 
     public io: any;
-    
+
 
     public init = (server: any) => {
-        this.io = io.listen(server);   
+        this.io = io.listen(server);
 
         this.io.sockets.on('connection', (client: any) => {
             client.player = new Player();
-            
+
 
             client.on('new_game', (game) => {
                 let newGame = {
@@ -37,14 +37,14 @@ export class WebSocketServer {
                 client.join(game._id);
                 client.broadcast.emit('new_game', game);
                 console.log(game._id);
-                client.broadcast.emit('palyers',  Date.now() + ': New game created by' + game.ceartorUsername );
-                
+                client.broadcast.emit('players',  Date.now() + ': New game created by' + game.ceartorUsername );
+
             });
 
             client.emit('players', Date.now() + ': Welcome to Sueca');
             client.broadcast.emit('players', Date.now() + ': A new player has arrived');
             client.on('chat', (data) => this.io.emit('chat', data));
-            client.on('chat-lobby', (data) => this.io.emit('chat', data));                     
+            client.on('chat-lobby', (data) => this.io.emit('chat', data));
         });
 
     };

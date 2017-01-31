@@ -1,6 +1,7 @@
 "use strict";
 var mongodb = require('mongodb');
 var util = require('util');
+var sha1 = require('sha1');
 var app_database_1 = require("./app.database");
 var Player = (function () {
     function Player() {
@@ -58,7 +59,16 @@ var Player = (function () {
                 .catch(function (err) { return _this.handleError(err, response, next); });
         };
         this.createPlayer = function (request, response, next) {
-            var player = request.body;
+            var player;
+            if (request.body !== undefined) {
+                player = {};
+                player.username = request.body.username,
+                    player.email = request.body.email,
+                    player.passwordHash = sha1(request.body.password),
+                    player.avatar = request.body.avatar,
+                    player.totalVictories = 0,
+                    player.totalScore = 0;
+            }
             if (player === undefined) {
                 response.send(400, 'No player data');
                 return next();
